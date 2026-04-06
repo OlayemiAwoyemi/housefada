@@ -80,7 +80,7 @@ const HeroSection = () => {
               initial={{ opacity: 0, x: 20 }}
               animate={{ opacity: 1, x: 0 }}
               transition={{ duration: 0.6, delay: 1.2 }}
-              className="absolute -bottom-6 -left-6 bg-accent text-accent-foreground px-5 py-3 shadow-lg"
+              className="absolute -top-6 -right-6 bg-accent text-accent-foreground px-5 py-3 shadow-lg z-10"
             >
               <div className="font-mono text-xs uppercase tracking-widest">6+ Services</div>
               <div className="font-mono text-[10px] text-accent-foreground/70 mt-0.5">One Brand</div>

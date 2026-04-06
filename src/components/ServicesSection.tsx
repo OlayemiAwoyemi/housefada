@@ -81,6 +81,7 @@ const ServicesSection = () => {
             >
               <Link
                 to={service.href}
+                onClick={() => window.scrollTo(0, 0)}
                 className="block bg-background p-8 md:p-10 group hover:bg-surface transition-colors h-full"
               >
                 <service.icon className="w-10 h-10 text-accent mb-6" />
