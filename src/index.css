@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=DM+Sans:wght@400;500;600;700&display=swap');
 
 @tailwind base;
 @tailwind components;
@@ -9,7 +9,7 @@
     --background: 0 0% 2%;
     --foreground: 0 0% 95%;
 
-    --card: 0 0% 5%;
+    --card: 0 0% 8%;
     --card-foreground: 0 0% 95%;
 
     --popover: 0 0% 5%;
@@ -18,10 +18,10 @@
     --primary: 0 0% 100%;
     --primary-foreground: 0 0% 0%;
 
-    --secondary: 0 0% 10%;
+    --secondary: 0 0% 14%;
     --secondary-foreground: 0 0% 95%;
 
-    --muted: 0 0% 12%;
+    --muted: 0 0% 16%;
     --muted-foreground: 0 0% 55%;
 
     --accent: 350 100% 55%;
@@ -30,11 +30,11 @@
     --destructive: 0 84.2% 60.2%;
     --destructive-foreground: 0 0% 100%;
 
-    --border: 0 0% 15%;
-    --input: 0 0% 15%;
-    --ring: 0 0% 100%;
+    --border: 0 0% 18%;
+    --input: 0 0% 18%;
+    --ring: 350 100% 55%;
 
-    --radius: 0px;
+    --radius: 12px;
 
     --sidebar-background: 0 0% 3%;
     --sidebar-foreground: 0 0% 95%;
@@ -49,6 +49,10 @@
     --glow: 350 100% 55%;
     --surface: 0 0% 7%;
     --surface-hover: 0 0% 12%;
+    --surface-light: 0 0% 94%;
+    --surface-light-hover: 0 0% 88%;
+    --foreground-on-light: 0 0% 8%;
+    --muted-on-light: 0 0% 40%;
   }
 }
 
@@ -121,8 +125,8 @@
     border-right: 1px solid;
   }
 
-  .font-mono-brand {
-    font-family: 'JetBrains Mono', monospace;
+  .font-display {
+    font-family: 'DM Sans', 'Inter', sans-serif;
   }
 
   .text-glow {
@@ -130,10 +134,20 @@
   }
 
   .service-card {
-    @apply bg-surface border border-border p-6 transition-all duration-300;
+    @apply bg-surface border border-border p-6 rounded-xl transition-all duration-300;
   }
 
   .service-card:hover {
     @apply bg-surface-hover border-foreground/20;
+  }
+
+  .section-light {
+    background: hsl(var(--surface-light));
+    color: hsl(var(--foreground-on-light));
+  }
+
+  .section-grey {
+    background: hsl(var(--card));
+    color: hsl(var(--foreground));
   }
 }
