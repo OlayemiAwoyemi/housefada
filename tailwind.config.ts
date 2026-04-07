@@ -15,7 +15,7 @@ export default {
     extend: {
       fontFamily: {
         sans: ["Inter", "sans-serif"],
-        mono: ["JetBrains Mono", "monospace"],
+        display: ["DM Sans", "Inter", "sans-serif"],
       },
       colors: {
         border: "hsl(var(--border))",
@@ -55,7 +55,11 @@ export default {
         surface: {
           DEFAULT: "hsl(var(--surface))",
           hover: "hsl(var(--surface-hover))",
+          light: "hsl(var(--surface-light))",
+          "light-hover": "hsl(var(--surface-light-hover))",
         },
+        "foreground-on-light": "hsl(var(--foreground-on-light))",
+        "muted-on-light": "hsl(var(--muted-on-light))",
         sidebar: {
           DEFAULT: "hsl(var(--sidebar-background))",
           foreground: "hsl(var(--sidebar-foreground))",
