@@ -18,7 +18,7 @@ const ContactSection = () => {
                 Ready to Experience <span className="text-accent">HouseFada?</span>
               </h2>
               <p className="mt-5 text-muted-foreground text-sm leading-relaxed max-w-md">
-                Whatever you need — cleaning, food, transport, produce, vehicles, or tech — we're one message away.
+                Whether you need a spotless home, a gourmet meal, a reliable ride, fresh produce, a new vehicle, or expert tech support — we're just one message away. Join thousands of satisfied clients who have trusted HouseFada since 2017.
               </p>
               <div className="mt-8 flex flex-wrap gap-3">
                 <a
@@ -63,6 +63,10 @@ const ContactSection = () => {
                   <br />
                   Ogun State, Nigeria
                 </p>
+              </div>
+              <div>
+                <div className="text-[10px] font-semibold text-muted-foreground mb-1.5 uppercase tracking-widest">Established</div>
+                <p className="text-foreground text-sm">2017</p>
               </div>
             </motion.div>
           </div>

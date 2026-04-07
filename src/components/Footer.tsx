@@ -10,7 +10,7 @@ const Footer = () => {
               HOUSE<span className="text-accent">FADA</span>
             </Link>
             <p className="mt-2.5 text-muted-foreground text-xs leading-relaxed">
-              Premium living solutions for modern Nigeria.
+              Premium living solutions for modern Nigeria. Trusted since 2017.
             </p>
           </div>
 
@@ -56,10 +56,10 @@ const Footer = () => {
 
         <div className="border-t border-border pt-6 flex flex-col md:flex-row items-center justify-between gap-3">
           <div className="text-[10px] text-muted-foreground">
-            © {new Date().getFullYear()} HouseFada · RC 9363567
+            © {new Date().getFullYear()} HouseFada · RC 9363567 · Est. 2017
           </div>
           <div className="text-[10px] text-muted-foreground">
-            Nigeria
+            Redemption City, Mowe, Ogun State, Nigeria
           </div>
         </div>
       </div>

@@ -20,7 +20,7 @@ const HeroSection = () => {
             </h1>
 
             <p className="mt-5 text-muted-foreground text-sm md:text-base max-w-md leading-relaxed">
-              HouseFada delivers top-tier services across cleaning, culinary, mobility, agriculture, automotive, and technology — all under one trusted brand.
+              Since 2017, HouseFada has delivered top-tier services across cleaning, culinary, mobility, agriculture, automotive, and technology — empowering thousands of Nigerians to live smarter, better, and more conveniently every day.
             </p>
 
             <div className="mt-8 flex flex-wrap gap-3">
@@ -79,8 +79,8 @@ const HeroSection = () => {
               transition={{ duration: 0.6, delay: 1.2 }}
               className="absolute -top-5 -right-5 bg-accent text-accent-foreground px-4 py-2.5 rounded-lg shadow-lg z-10"
             >
-              <div className="text-[10px] font-bold uppercase tracking-widest">6+ Services</div>
-              <div className="text-[9px] text-accent-foreground/70 mt-0.5">One Brand</div>
+              <div className="text-[10px] font-bold uppercase tracking-widest">Since 2017</div>
+              <div className="text-[9px] text-accent-foreground/70 mt-0.5">6+ Services</div>
             </motion.div>
           </motion.div>
         </div>
