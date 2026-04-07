@@ -5,37 +5,37 @@ import { ArrowRight, Sparkles, Utensils, Truck, Leaf, Car, Cpu } from "lucide-re
 const services = [
   {
     name: "Cleaning Services",
-    description: "Premium residential & office cleaning — every corner spotless, every time.",
+    description: "Premium residential and commercial cleaning solutions. From deep sanitisation to routine upkeep, our trained professionals ensure every space is spotless, hygienic, and welcoming — on your schedule.",
     icon: Sparkles,
     href: "/cleaning",
   },
   {
     name: "Culinary Services",
-    description: "Gourmet meals, event catering, and daily meal plans crafted with fresh ingredients.",
+    description: "From daily meal plans to full-scale event catering, our chefs craft delicious, nutritious meals using the freshest local ingredients. Experience restaurant-quality dining in the comfort of your home.",
     icon: Utensils,
     href: "/culinary",
   },
   {
     name: "Mobility Solutions",
-    description: "Executive rides, airport transfers, and corporate fleet services across Nigeria.",
+    description: "Executive rides, airport transfers, corporate fleet management, and logistics support across Nigeria. Travel in comfort and style with our professional, vetted drivers and well-maintained vehicles.",
     icon: Truck,
     href: "/mobility",
   },
   {
     name: "AgroFresh",
-    description: "Farm-fresh vegetables, fruits, and grains delivered directly to your doorstep.",
+    description: "Farm-to-table freshness delivered to your doorstep. We source premium vegetables, fruits, grains, and spices directly from trusted farms, ensuring quality produce with complete traceability.",
     icon: Leaf,
     href: "/agrofresh",
   },
   {
     name: "AutoHub",
-    description: "New & pre-owned vehicles, auto maintenance, inspections, and flexible financing.",
+    description: "Your one-stop automotive partner — offering new and pre-owned vehicles, comprehensive maintenance, professional inspections, and flexible financing options tailored to your needs.",
     icon: Car,
     href: "/autohub",
   },
   {
     name: "Tech Innovations",
-    description: "Latest gadgets, smart home setups, IT services, and expert tech support.",
+    description: "Stay ahead with the latest gadgets, smart home installations, IT infrastructure services, and dedicated tech support. We bring cutting-edge technology solutions to homes and businesses alike.",
     icon: Cpu,
     href: "/tech",
   },
@@ -52,7 +52,7 @@ const ServicesSection = () => {
           transition={{ duration: 0.8 }}
           className="mb-5"
         >
-          <span className="text-xs font-semibold text-accent uppercase tracking-widest">Who We Are</span>
+          <span className="text-xs font-semibold text-accent uppercase tracking-widest">Our Services</span>
         </motion.div>
 
         <motion.div
@@ -66,7 +66,7 @@ const ServicesSection = () => {
             One Brand. Every <span className="text-accent">Solution.</span>
           </h2>
           <p className="mt-3 text-muted-foreground text-sm leading-relaxed">
-            HouseFada empowers modern living by providing premium services across six verticals. This allows you to focus on what matters, while we handle the rest.
+            Since 2017, HouseFada has empowered modern living by delivering premium services across six verticals. We handle the complexities of everyday life so you can focus on what truly matters — your family, your career, and your ambitions.
           </p>
         </motion.div>
 

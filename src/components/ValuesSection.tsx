@@ -5,22 +5,22 @@ const values = [
   {
     icon: ShieldCheck,
     title: "Trusted & Reliable",
-    description: "Consistent quality and punctual delivery you can count on, every single time.",
+    description: "Since 2017, we've built our reputation on consistency, transparency, and punctual delivery. Every service is backed by vetted professionals and rigorous quality standards you can depend on.",
   },
   {
     icon: Clock,
     title: "Always Available",
-    description: "Round-the-clock support and service scheduling to fit your lifestyle.",
+    description: "Life doesn't run on a 9-to-5 schedule, and neither do we. Our round-the-clock support and flexible scheduling ensure you get the help you need, exactly when you need it — day or night.",
   },
   {
     icon: Star,
     title: "Premium Quality",
-    description: "We set the highest standards across every service vertical we operate in.",
+    description: "We don't cut corners. From the products we use to the people we hire, HouseFada sets the highest standards across every service vertical. Excellence isn't aspirational — it's our baseline.",
   },
   {
     icon: Users,
     title: "Customer First",
-    description: "Every service is customized to your exact needs. Your satisfaction is our metric.",
+    description: "Every interaction is an opportunity to exceed expectations. We listen, adapt, and personalise our services to your unique needs. Your satisfaction isn't just a goal — it's the metric we measure everything by.",
   },
 ];
 
@@ -46,8 +46,11 @@ const ValuesSection = () => {
           className="mb-12 md:mb-16"
         >
           <h2 className="text-2xl md:text-4xl font-bold tracking-tight font-display text-foreground-on-light">
-            Redefining What's Possible with <span className="text-accent">HouseFada</span>
+            Built on Trust Since <span className="text-accent">2017</span>
           </h2>
+          <p className="mt-3 text-muted-on-light text-sm leading-relaxed max-w-xl">
+            For over eight years, HouseFada has been setting the standard for premium living services in Nigeria. Here's what sets us apart from the rest.
+          </p>
         </motion.div>
 
         <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
@@ -62,7 +65,7 @@ const ValuesSection = () => {
             >
               <value.icon className="w-8 h-8 text-accent mb-5" />
               <h3 className="text-base font-bold tracking-tight mb-2 text-foreground-on-light">{value.title}</h3>
-              <p className="text-muted-on-light text-xs leading-relaxed max-w-sm">
+              <p className="text-muted-on-light text-xs leading-relaxed">
                 {value.description}
               </p>
             </motion.div>

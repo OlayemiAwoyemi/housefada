@@ -152,7 +152,7 @@ const ServicePageLayout = ({
               Ready to Get <span className="text-accent">Started?</span>
             </h2>
             <p className="text-muted-on-light text-sm max-w-md mx-auto mb-8">
-              Reach out to us on WhatsApp and let's discuss how we can help you.
+              Reach out to us on WhatsApp and let's discuss how HouseFada can simplify your life. We've been doing this since 2017 — you're in good hands.
             </p>
             <div className="flex flex-wrap gap-3 justify-center">
               <a
@@ -180,7 +180,7 @@ const ServicePageLayout = ({
       <footer className="bg-background border-t border-border py-6 px-6">
         <div className="max-w-7xl mx-auto flex flex-col md:flex-row items-center justify-between gap-3">
           <div className="text-[10px] text-muted-foreground">
-            © {new Date().getFullYear()} HouseFada · RC 9363567
+            © {new Date().getFullYear()} HouseFada · RC 9363567 · Est. 2017
           </div>
           <Link to="/" className="text-[10px] text-muted-foreground hover:text-accent transition-colors">
             housefada.com
