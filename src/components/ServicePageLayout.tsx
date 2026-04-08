@@ -49,7 +49,7 @@ const ServicePageLayout = ({
       </nav>
 
       {/* Hero */}
-      <section className="pt-28 pb-16 md:pt-36 md:pb-24 px-6">
+      <section className="pt-28 pb-16 md:pt-36 md:pb-24 px-6 lg:px-10">
         <div className="max-w-7xl mx-auto">
           <motion.div
             initial={{ opacity: 0, y: 30 }}
@@ -88,7 +88,7 @@ const ServicePageLayout = ({
       </section>
 
       {/* Long description */}
-      <section className="py-16 md:py-24 px-6 section-light">
+      <section className="py-16 md:py-24 px-6 lg:px-10 section-light">
         <div className="max-w-7xl mx-auto">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
@@ -106,7 +106,7 @@ const ServicePageLayout = ({
       </section>
 
       {/* Features grid */}
-      <section className="py-16 md:py-24 px-6 section-grey">
+      <section className="py-16 md:py-24 px-6 lg:px-10 section-grey">
         <div className="max-w-7xl mx-auto">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
@@ -141,7 +141,7 @@ const ServicePageLayout = ({
       </section>
 
       {/* CTA */}
-      <section className="py-16 md:py-24 px-6 section-light">
+      <section className="py-16 md:py-24 px-6 lg:px-10 section-light">
         <div className="max-w-7xl mx-auto text-center">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
@@ -178,7 +178,7 @@ const ServicePageLayout = ({
       </section>
 
       {/* Footer */}
-      <footer className="bg-background border-t border-border py-8 px-6">
+      <footer className="bg-background border-t border-border py-8 px-6 lg:px-10">
         <div className="max-w-7xl mx-auto flex flex-col md:flex-row items-center justify-between gap-4">
           <Link to="/" className="inline-block">
             <img src={footerLogo} alt="HouseFada" className="h-7" />
