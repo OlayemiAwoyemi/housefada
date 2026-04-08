@@ -3,7 +3,7 @@ import { ArrowRight, Sparkles, Shield, Truck, Utensils, Car, Cpu } from "lucide-
 
 const HeroSection = () => {
   return (
-    <section className="min-h-screen flex items-center pt-16">
+    <section className="min-h-screen flex items-center pt-16 subtle-grid">
       <div className="max-w-7xl mx-auto px-6 lg:px-10 w-full">
         <div className="grid lg:grid-cols-2 gap-12 lg:gap-20 items-center">
           <motion.div
@@ -19,7 +19,7 @@ const HeroSection = () => {
               <span className="text-accent">modern Nigeria</span>
             </h1>
 
-            <p className="mt-5 text-muted-foreground text-sm md:text-base max-w-md leading-relaxed">
+            <p className="mt-5 text-muted-foreground text-base max-w-md leading-relaxed">
               Since 2017, HouseFada has delivered top-tier services across cleaning, culinary, mobility, agriculture, automotive, and technology — empowering thousands of Nigerians to live smarter, better, and more conveniently every day.
             </p>
 
