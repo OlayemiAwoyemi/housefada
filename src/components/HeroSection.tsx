@@ -11,7 +11,7 @@ const HeroSection = () => {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8 }}
           >
-            <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold tracking-tight leading-[1.05] font-display">
+            <h1 className="text-3xl md:text-4xl lg:text-5xl font-bold tracking-tight leading-[1.1] font-display">
               Premium living
               <br />
               solutions built for
@@ -26,19 +26,19 @@ const HeroSection = () => {
             <div className="mt-8 flex flex-wrap gap-3">
               <a
                 href="#services"
-                className="inline-flex items-center gap-2.5 bg-accent text-accent-foreground text-xs font-semibold uppercase tracking-wider px-6 py-3 rounded-lg hover:bg-accent/90 transition-all group"
+                className="inline-flex items-center gap-2.5 bg-accent text-accent-foreground text-sm font-semibold uppercase tracking-wider px-6 py-3 rounded-xl hover:bg-accent/90 transition-all group"
               >
                 Explore Services
-                <ArrowRight className="w-3.5 h-3.5 group-hover:translate-x-1 transition-transform" />
+                <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
               </a>
               <a
                 href="https://wa.me/2347069510606?text=Hello%20HouseFada%2C%20I%27d%20like%20to%20learn%20more%20about%20your%20services!"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="inline-flex items-center gap-2.5 border border-border text-foreground text-xs font-semibold uppercase tracking-wider px-6 py-3 rounded-lg hover:bg-surface-hover transition-all group"
+                className="inline-flex items-center gap-2.5 border border-border text-foreground text-sm font-semibold uppercase tracking-wider px-6 py-3 rounded-xl hover:bg-surface-hover transition-all group"
               >
                 Talk to Our Team
-                <ArrowRight className="w-3.5 h-3.5 group-hover:translate-x-1 transition-transform" />
+                <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
               </a>
             </div>
           </motion.div>
@@ -49,7 +49,7 @@ const HeroSection = () => {
             transition={{ duration: 1, delay: 0.3 }}
             className="relative hidden lg:block"
           >
-            <div className="grid grid-cols-3 gap-2.5">
+            <div className="grid grid-cols-3 gap-3">
               {[
                 { icon: Sparkles, label: "Cleaning" },
                 { icon: Utensils, label: "Culinary" },
@@ -63,10 +63,10 @@ const HeroSection = () => {
                   initial={{ opacity: 0, y: 20 }}
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ duration: 0.5, delay: 0.5 + i * 0.1 }}
-                  className="bg-card border border-border p-5 rounded-xl flex flex-col items-center justify-center gap-2.5 hover:border-accent/40 transition-colors"
+                  className="bg-card border border-border p-6 rounded-xl flex flex-col items-center justify-center gap-3 hover:border-accent/40 transition-colors"
                 >
                   <item.icon className="w-7 h-7 text-accent" />
-                  <span className="text-[10px] font-semibold uppercase tracking-widest text-muted-foreground">
+                  <span className="text-xs font-semibold uppercase tracking-widest text-muted-foreground">
                     {item.label}
                   </span>
                 </motion.div>
@@ -77,10 +77,10 @@ const HeroSection = () => {
               initial={{ opacity: 0, x: 20 }}
               animate={{ opacity: 1, x: 0 }}
               transition={{ duration: 0.6, delay: 1.2 }}
-              className="absolute -top-5 -right-5 bg-accent text-accent-foreground px-4 py-2.5 rounded-lg shadow-lg z-10"
+              className="absolute -top-5 -right-5 bg-accent text-accent-foreground px-4 py-2.5 rounded-xl shadow-lg z-10"
             >
-              <div className="text-[10px] font-bold uppercase tracking-widest">Since 2017</div>
-              <div className="text-[9px] text-accent-foreground/70 mt-0.5">6+ Services</div>
+              <div className="text-xs font-bold uppercase tracking-widest">Since 2017</div>
+              <div className="text-[11px] text-accent-foreground/70 mt-0.5">6+ Services</div>
             </motion.div>
           </motion.div>
         </div>

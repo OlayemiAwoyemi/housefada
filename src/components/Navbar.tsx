@@ -35,7 +35,7 @@ const Navbar = () => {
             <button
               key={link.label}
               onClick={() => scrollTo(link.href)}
-              className="text-xs font-medium uppercase tracking-wider text-muted-foreground hover:text-foreground transition-colors"
+              className="text-sm font-medium uppercase tracking-wider text-muted-foreground hover:text-foreground transition-colors"
             >
               {link.label}
             </button>
@@ -46,7 +46,7 @@ const Navbar = () => {
           <a
             href="#services"
             onClick={(e) => { e.preventDefault(); scrollTo("#services"); }}
-            className="text-xs font-medium uppercase tracking-wider border border-border text-foreground px-5 py-2.5 rounded-lg hover:bg-surface-hover transition-all"
+            className="text-sm font-medium uppercase tracking-wider border border-border text-foreground px-5 py-2.5 rounded-xl hover:bg-surface-hover transition-all"
           >
             Explore Services
           </a>
@@ -54,7 +54,7 @@ const Navbar = () => {
             href="https://wa.me/2347069510606?text=Hello%20HouseFada%2C%20I%27d%20like%20to%20learn%20more%20about%20your%20services!"
             target="_blank"
             rel="noopener noreferrer"
-            className="text-xs font-medium uppercase tracking-wider bg-accent text-accent-foreground px-5 py-2.5 rounded-lg hover:bg-accent/90 transition-all"
+            className="text-sm font-medium uppercase tracking-wider bg-accent text-accent-foreground px-5 py-2.5 rounded-xl hover:bg-accent/90 transition-all"
           >
             Talk to Us
           </a>
@@ -62,7 +62,7 @@ const Navbar = () => {
 
         <button
           onClick={() => setMobileOpen(!mobileOpen)}
-          className="md:hidden text-xs font-medium uppercase tracking-widest text-muted-foreground"
+          className="md:hidden text-sm font-medium uppercase tracking-widest text-muted-foreground"
         >
           {mobileOpen ? "Close" : "Menu"}
         </button>
@@ -81,7 +81,7 @@ const Navbar = () => {
                 <button
                   key={link.label}
                   onClick={() => scrollTo(link.href)}
-                  className="block text-sm font-medium uppercase tracking-wider text-muted-foreground hover:text-foreground transition-colors"
+                  className="block text-base font-medium uppercase tracking-wider text-muted-foreground hover:text-foreground transition-colors"
                 >
                   {link.label}
                 </button>
@@ -90,7 +90,7 @@ const Navbar = () => {
                 href="https://wa.me/2347069510606?text=Hello%20HouseFada%2C%20I%27d%20like%20to%20learn%20more%20about%20your%20services!"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="block text-sm font-medium uppercase tracking-wider text-accent"
+                className="block text-base font-medium uppercase tracking-wider text-accent"
               >
                 Talk to Us →
               </a>

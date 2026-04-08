@@ -35,7 +35,7 @@ const ValuesSection = () => {
           transition={{ duration: 0.8 }}
           className="mb-5"
         >
-          <span className="text-xs font-semibold text-accent uppercase tracking-widest">Why Choose HouseFada</span>
+          <span className="text-sm font-semibold text-accent uppercase tracking-widest">Why Choose HouseFada</span>
         </motion.div>
 
         <motion.div
@@ -45,15 +45,15 @@ const ValuesSection = () => {
           transition={{ duration: 0.8, delay: 0.1 }}
           className="mb-12 md:mb-16"
         >
-          <h2 className="text-2xl md:text-4xl font-bold tracking-tight font-display text-foreground-on-light">
+          <h2 className="text-2xl md:text-3xl font-bold tracking-tight font-display text-foreground-on-light">
             Built on Trust Since <span className="text-accent">2017</span>
           </h2>
-          <p className="mt-3 text-muted-on-light text-sm leading-relaxed max-w-xl">
+          <p className="mt-3 text-muted-on-light text-base leading-relaxed max-w-xl">
             For over eight years, HouseFada has been setting the standard for premium living services in Nigeria. Here's what sets us apart from the rest.
           </p>
         </motion.div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
           {values.map((value, index) => (
             <motion.div
               key={value.title}
@@ -61,11 +61,11 @@ const ValuesSection = () => {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.5, delay: index * 0.1 }}
-              className="bg-surface-light border border-foreground-on-light/8 p-7 md:p-10 rounded-xl group hover:shadow-lg transition-all"
+              className="bg-surface-light border border-foreground-on-light/8 p-8 md:p-10 rounded-xl group hover:shadow-lg transition-all"
             >
               <value.icon className="w-8 h-8 text-accent mb-5" />
-              <h3 className="text-base font-bold tracking-tight mb-2 text-foreground-on-light">{value.title}</h3>
-              <p className="text-muted-on-light text-xs leading-relaxed">
+              <h3 className="text-lg font-bold tracking-tight mb-2 text-foreground-on-light">{value.title}</h3>
+              <p className="text-muted-on-light text-sm leading-relaxed">
                 {value.description}
               </p>
             </motion.div>
