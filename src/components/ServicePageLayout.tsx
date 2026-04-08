@@ -2,6 +2,7 @@ import { motion } from "framer-motion";
 import { Link } from "react-router-dom";
 import { ArrowLeft, ArrowRight, LucideIcon } from "lucide-react";
 import logo from "@/assets/HouseFada_Logo.png";
+import footerLogo from "@/assets/HouseFada_Logo_Footer.png";
 
 interface ServiceFeature {
   title: string;
@@ -39,9 +40,9 @@ const ServicePageLayout = ({
           </Link>
           <Link
             to="/"
-            className="inline-flex items-center gap-2 text-xs font-medium uppercase tracking-wider text-muted-foreground hover:text-foreground transition-colors"
+            className="inline-flex items-center gap-2 text-sm font-medium uppercase tracking-wider text-muted-foreground hover:text-foreground transition-colors"
           >
-            <ArrowLeft className="w-3.5 h-3.5" />
+            <ArrowLeft className="w-4 h-4" />
             Back to Home
           </Link>
         </div>
@@ -57,11 +58,11 @@ const ServicePageLayout = ({
             className="grid lg:grid-cols-2 gap-10 lg:gap-16 items-center"
           >
             <div>
-              <span className="text-xs font-semibold text-accent uppercase tracking-widest">{tag}</span>
-              <h1 className="text-3xl md:text-5xl lg:text-6xl font-bold tracking-tight mt-3 leading-[1.05] font-display">
+              <span className="text-sm font-semibold text-accent uppercase tracking-widest">{tag}</span>
+              <h1 className="text-3xl md:text-4xl lg:text-5xl font-bold tracking-tight mt-3 leading-[1.1] font-display">
                 {title} <span className="text-accent">{accent}</span>
               </h1>
-              <p className="mt-5 text-muted-foreground text-sm md:text-base max-w-md leading-relaxed">
+              <p className="mt-5 text-muted-foreground text-base max-w-md leading-relaxed">
                 {description}
               </p>
               <div className="mt-8">
@@ -69,10 +70,10 @@ const ServicePageLayout = ({
                   href={`https://wa.me/2347069510606?text=${encodeURIComponent(whatsappMessage)}`}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="inline-flex items-center gap-2.5 bg-accent text-accent-foreground text-xs font-semibold uppercase tracking-wider px-6 py-3 rounded-lg hover:bg-accent/90 transition-all group"
+                  className="inline-flex items-center gap-2.5 bg-accent text-accent-foreground text-sm font-semibold uppercase tracking-wider px-6 py-3 rounded-xl hover:bg-accent/90 transition-all group"
                 >
                   Get Started
-                  <ArrowRight className="w-3.5 h-3.5 group-hover:translate-x-1 transition-transform" />
+                  <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
                 </a>
               </div>
             </div>
@@ -96,8 +97,8 @@ const ServicePageLayout = ({
             transition={{ duration: 0.8 }}
             className="max-w-3xl"
           >
-            <span className="text-xs font-semibold text-accent uppercase tracking-widest">Overview</span>
-            <p className="mt-5 text-foreground-on-light/80 text-base md:text-lg leading-relaxed">
+            <span className="text-sm font-semibold text-accent uppercase tracking-widest">Overview</span>
+            <p className="mt-5 text-foreground-on-light/80 text-lg leading-relaxed">
               {longDescription}
             </p>
           </motion.div>
@@ -114,13 +115,13 @@ const ServicePageLayout = ({
             transition={{ duration: 0.8 }}
             className="mb-12"
           >
-            <span className="text-xs font-semibold text-accent uppercase tracking-widest">What We Offer</span>
-            <h2 className="text-2xl md:text-4xl font-bold tracking-tight mt-3 font-display">
+            <span className="text-sm font-semibold text-accent uppercase tracking-widest">What We Offer</span>
+            <h2 className="text-2xl md:text-3xl font-bold tracking-tight mt-3 font-display">
               Our <span className="text-accent">Capabilities</span>
             </h2>
           </motion.div>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-3">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
             {features.map((feature, index) => (
               <motion.div
                 key={feature.title}
@@ -130,9 +131,9 @@ const ServicePageLayout = ({
                 transition={{ duration: 0.5, delay: index * 0.08 }}
                 className="bg-background border border-border p-7 md:p-8 rounded-xl"
               >
-                <div className="text-[10px] font-bold text-accent mb-3 tracking-wider">0{index + 1}</div>
-                <h3 className="text-sm font-bold tracking-tight mb-2">{feature.title}</h3>
-                <p className="text-muted-foreground text-xs leading-relaxed">{feature.description}</p>
+                <div className="text-xs font-bold text-accent mb-3 tracking-wider">0{index + 1}</div>
+                <h3 className="text-base font-bold tracking-tight mb-2">{feature.title}</h3>
+                <p className="text-muted-foreground text-sm leading-relaxed">{feature.description}</p>
               </motion.div>
             ))}
           </div>
@@ -148,10 +149,10 @@ const ServicePageLayout = ({
             viewport={{ once: true }}
             transition={{ duration: 0.8 }}
           >
-            <h2 className="text-2xl md:text-4xl font-bold tracking-tight mb-5 font-display text-foreground-on-light">
+            <h2 className="text-2xl md:text-3xl font-bold tracking-tight mb-5 font-display text-foreground-on-light">
               Ready to Get <span className="text-accent">Started?</span>
             </h2>
-            <p className="text-muted-on-light text-sm max-w-md mx-auto mb-8">
+            <p className="text-muted-on-light text-base max-w-md mx-auto mb-8">
               Reach out to us on WhatsApp and let's discuss how HouseFada can simplify your life. We've been doing this since 2017 — you're in good hands.
             </p>
             <div className="flex flex-wrap gap-3 justify-center">
@@ -159,16 +160,16 @@ const ServicePageLayout = ({
                 href={`https://wa.me/2347069510606?text=${encodeURIComponent(whatsappMessage)}`}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="inline-flex items-center gap-2.5 bg-accent text-accent-foreground text-xs font-semibold uppercase tracking-wider px-6 py-3 rounded-lg hover:bg-accent/90 transition-all group"
+                className="inline-flex items-center gap-2.5 bg-accent text-accent-foreground text-sm font-semibold uppercase tracking-wider px-6 py-3 rounded-xl hover:bg-accent/90 transition-all group"
               >
                 Chat on WhatsApp
-                <ArrowRight className="w-3.5 h-3.5 group-hover:translate-x-1 transition-transform" />
+                <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
               </a>
               <Link
                 to="/"
-                className="inline-flex items-center gap-2 border border-foreground-on-light/20 text-foreground-on-light text-xs font-semibold uppercase tracking-wider px-6 py-3 rounded-lg hover:bg-surface-light-hover transition-all"
+                className="inline-flex items-center gap-2 border border-foreground-on-light/20 text-foreground-on-light text-sm font-semibold uppercase tracking-wider px-6 py-3 rounded-xl hover:bg-surface-light-hover transition-all"
               >
-                <ArrowLeft className="w-3.5 h-3.5" />
+                <ArrowLeft className="w-4 h-4" />
                 Back to Home
               </Link>
             </div>
@@ -177,14 +178,14 @@ const ServicePageLayout = ({
       </section>
 
       {/* Footer */}
-      <footer className="bg-background border-t border-border py-6 px-6">
-        <div className="max-w-7xl mx-auto flex flex-col md:flex-row items-center justify-between gap-3">
-          <div className="text-[10px] text-muted-foreground">
+      <footer className="bg-background border-t border-border py-8 px-6">
+        <div className="max-w-7xl mx-auto flex flex-col md:flex-row items-center justify-between gap-4">
+          <Link to="/" className="inline-block">
+            <img src={footerLogo} alt="HouseFada" className="h-7" />
+          </Link>
+          <div className="text-xs text-muted-foreground">
             © {new Date().getFullYear()} HouseFada · RC 9363567 · Est. 2017
           </div>
-          <Link to="/" className="text-[10px] text-muted-foreground hover:text-accent transition-colors">
-            housefada.com
-          </Link>
         </div>
       </footer>
     </div>
