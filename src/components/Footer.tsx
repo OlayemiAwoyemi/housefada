@@ -3,8 +3,8 @@ import footerLogo from "@/assets/HouseFada_Logo_Footer.png";
 
 const Footer = () => {
   return (
-    <footer className="bg-background border-t border-border py-14 px-6 lg:px-10">
-      <div className="max-w-7xl mx-auto">
+    <footer className="bg-background border-t border-border py-14">
+      <div className="max-w-7xl mx-auto px-6 lg:px-10">
         <div className="grid grid-cols-1 md:grid-cols-4 gap-10 mb-12">
           <div>
             <Link to="/" className="inline-block">
