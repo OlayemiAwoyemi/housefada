@@ -3,8 +3,8 @@ import { ArrowRight } from "lucide-react";
 
 const ContactSection = () => {
   return (
-    <section className="py-20 md:py-32 px-6 lg:px-10 section-grey">
-      <div className="max-w-7xl mx-auto">
+    <section className="py-20 md:py-32 section-grey">
+      <div className="max-w-7xl mx-auto px-6 lg:px-10">
         <div className="bg-card border border-border p-8 md:p-14 lg:p-16 rounded-2xl">
           <div className="grid lg:grid-cols-2 gap-10 lg:gap-16">
             <motion.div
