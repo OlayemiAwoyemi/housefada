@@ -1,5 +1,6 @@
 import ServicePageLayout from "@/components/ServicePageLayout";
 import { Leaf } from "lucide-react";
+import overviewImg from "@/assets/service-agrofresh.jpg";
 
 const AgroFreshPage = () => (
   <ServicePageLayout
@@ -7,7 +8,8 @@ const AgroFreshPage = () => (
     title="Farm Fresh,"
     accent="Delivered Daily."
     description="Premium farm-fresh vegetables, fruits, grains, and spices sourced directly from trusted Nigerian farms and delivered straight to your doorstep. Eat better, live healthier — with complete traceability from farm to table."
-    longDescription="HouseFada AgroFresh bridges the gap between Nigeria's richest farmlands and your kitchen table. Since 2017, we've built direct partnerships with vetted local farmers and agricultural cooperatives to bring you the freshest, chemical-free produce available anywhere in the country. Every item is carefully hand-selected, quality-checked by our trained team, and delivered in eco-friendly, temperature-controlled packaging to preserve maximum freshness and nutritional value. Whether you're a home cook passionate about quality ingredients, a restaurant chef demanding consistency, or a large-scale caterer needing reliable supply — AgroFresh delivers. We're not just a delivery service; we're a movement to support local agriculture, reduce food waste, and make premium produce accessible to every Nigerian household."
+    longDescription="HouseFada AgroFresh bridges the gap between Nigeria's richest farmlands and your kitchen table. Since 2017, we've built direct partnerships with vetted local farmers and agricultural cooperatives to bring you the freshest, chemical-free produce available anywhere in the country. Every item is carefully hand-selected, quality-checked by our trained team, and delivered in eco-friendly, temperature-controlled packaging to preserve maximum freshness and nutritional value. Whether you're a home cook passionate about quality ingredients, a restaurant chef demanding consistency, or a large-scale caterer needing reliable supply — AgroFresh delivers."
+    overviewImage={overviewImg}
     icon={Leaf}
     whatsappMessage="Hello HouseFada, I'd like to order fresh produce from AgroFresh!"
     features={[

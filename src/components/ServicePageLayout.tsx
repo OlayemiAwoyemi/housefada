@@ -27,6 +27,7 @@ const ServicePageLayout = ({
   accent,
   description,
   longDescription,
+  overviewImage,
   features,
   icon: Icon,
   whatsappMessage,
@@ -88,7 +89,7 @@ const ServicePageLayout = ({
         </div>
       </section>
 
-      {/* Long description */}
+      {/* Overview */}
       <section className="py-16 md:py-24 section-light">
         <div className="max-w-7xl mx-auto px-6 lg:px-10">
           <motion.div
@@ -96,12 +97,24 @@ const ServicePageLayout = ({
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.8 }}
-            className="max-w-3xl"
+            className="grid lg:grid-cols-2 gap-10 lg:gap-14 items-center"
           >
-            <span className="text-sm font-semibold text-accent uppercase tracking-widest">Overview</span>
-            <p className="mt-5 text-foreground-on-light/80 text-lg leading-relaxed">
-              {longDescription}
-            </p>
+            <div>
+              <span className="text-sm font-semibold text-accent uppercase tracking-widest">Overview</span>
+              <p className="mt-5 text-foreground-on-light/80 text-base leading-relaxed line-clamp-[8]">
+                {longDescription}
+              </p>
+            </div>
+            <div className="rounded-2xl overflow-hidden">
+              <img
+                src={overviewImage}
+                alt={`${tag} overview`}
+                className="w-full h-[320px] object-cover rounded-2xl"
+                loading="lazy"
+                width={800}
+                height={600}
+              />
+            </div>
           </motion.div>
         </div>
       </section>

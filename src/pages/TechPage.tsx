@@ -1,5 +1,6 @@
 import ServicePageLayout from "@/components/ServicePageLayout";
 import { Cpu } from "lucide-react";
+import overviewImg from "@/assets/service-tech.jpg";
 
 const TechPage = () => (
   <ServicePageLayout
@@ -7,7 +8,8 @@ const TechPage = () => (
     title="Smart Solutions,"
     accent="Future Ready."
     description="From the latest consumer gadgets to enterprise IT infrastructure, HouseFada Tech Innovations delivers cutting-edge technology solutions for homes and businesses across Nigeria. Powering your digital life since 2017."
-    longDescription="HouseFada Tech Innovations keeps you ahead of the curve in an ever-evolving digital world. Since 2017, we've been helping individuals, families, and businesses across Nigeria harness the power of technology to work smarter, live better, and stay connected. From sourcing the latest smartphones and laptops to designing and installing complete smart home ecosystems, from providing on-demand IT support to building robust enterprise network infrastructure — we combine deep product expertise with hands-on, white-glove service. Our team of certified technicians and consultants stays current with emerging technologies, industry trends, and best practices to recommend the ideal solutions for your unique needs and budget. Whether you're a tech enthusiast, a startup founder, or the IT director of a large corporation, HouseFada Tech Innovations is your trusted technology partner."
+    longDescription="HouseFada Tech Innovations keeps you ahead of the curve in an ever-evolving digital world. Since 2017, we've been helping individuals, families, and businesses across Nigeria harness the power of technology to work smarter, live better, and stay connected. From sourcing the latest smartphones and laptops to designing and installing complete smart home ecosystems, from providing on-demand IT support to building robust enterprise network infrastructure — we combine deep product expertise with hands-on, white-glove service. Our team of certified technicians and consultants stays current with emerging technologies to recommend ideal solutions for your needs."
+    overviewImage={overviewImg}
     icon={Cpu}
     whatsappMessage="Hello HouseFada, I'd like to inquire about tech products or IT services!"
     features={[

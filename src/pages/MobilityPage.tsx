@@ -1,5 +1,6 @@
 import ServicePageLayout from "@/components/ServicePageLayout";
 import { Truck } from "lucide-react";
+import overviewImg from "@/assets/service-mobility.jpg";
 
 const MobilityPage = () => (
   <ServicePageLayout
@@ -7,7 +8,8 @@ const MobilityPage = () => (
     title="Move Smarter,"
     accent="Arrive Better."
     description="Executive rides, airport transfers, intercity travel, and corporate fleet services delivering safe, comfortable, and reliable transportation across Nigeria. Travel with confidence, every trip."
-    longDescription="HouseFada Mobility redefines transportation in Nigeria with a fleet of meticulously maintained vehicles and a team of professionally trained, background-checked drivers. Since 2017, we've been the trusted mobility partner for executives, families, and organisations across the country. Whether you need a daily commute solution, a seamless airport pickup, comfortable intercity travel, or a full corporate fleet — we deliver punctuality, comfort, and safety on every single trip. Our vehicles are regularly serviced, fully insured, and equipped with modern amenities to make your journey as pleasant as your destination. With real-time tracking, transparent pricing, and 24/7 availability, HouseFada Mobility ensures you always arrive on time and in style."
+    longDescription="HouseFada Mobility redefines transportation in Nigeria with a fleet of meticulously maintained vehicles and a team of professionally trained, background-checked drivers. Since 2017, we've been the trusted mobility partner for executives, families, and organisations across the country. Whether you need a daily commute solution, a seamless airport pickup, comfortable intercity travel, or a full corporate fleet — we deliver punctuality, comfort, and safety on every single trip. Our vehicles are regularly serviced, fully insured, and equipped with modern amenities to make your journey as pleasant as your destination."
+    overviewImage={overviewImg}
     icon={Truck}
     whatsappMessage="Hello HouseFada, I'd like to book a ride or inquire about mobility services!"
     features={[

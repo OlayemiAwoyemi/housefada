@@ -1,5 +1,6 @@
 import ServicePageLayout from "@/components/ServicePageLayout";
 import { Utensils } from "lucide-react";
+import overviewImg from "@/assets/service-culinary.jpg";
 
 const CulinaryPage = () => (
   <ServicePageLayout
@@ -7,7 +8,8 @@ const CulinaryPage = () => (
     title="Gourmet Meals,"
     accent="Crafted Fresh."
     description="From daily meal plans to grand event catering, HouseFada Culinary delivers flavourful, nutritious meals made with the freshest locally sourced ingredients. Experience restaurant-quality dining in the comfort of your own home or at your next event."
-    longDescription="HouseFada Culinary brings the art of fine dining to your doorstep — and has been doing so since 2017. Our team of experienced chefs specialises in both rich, authentic Nigerian cuisine and sophisticated international dishes, ensuring every meal is a celebration of flavour, culture, and craftsmanship. We source fresh, premium-quality ingredients daily from trusted local suppliers and farms, and we customise every menu to suit dietary preferences, cultural requirements, health goals, and event themes. Whether you're hosting an intimate dinner party, feeding a corporate team of 500, or simply want nutritious meals prepared for your busy week — HouseFada Culinary delivers excellence on every plate, every time."
+    longDescription="HouseFada Culinary brings the art of fine dining to your doorstep — and has been doing so since 2017. Our team of experienced chefs specialises in both rich, authentic Nigerian cuisine and sophisticated international dishes, ensuring every meal is a celebration of flavour, culture, and craftsmanship. We source fresh, premium-quality ingredients daily from trusted local suppliers and farms, and we customise every menu to suit dietary preferences, cultural requirements, health goals, and event themes. Whether you're hosting an intimate dinner party, feeding a corporate team, or simply want nutritious meals prepared for your busy week — HouseFada Culinary delivers excellence on every plate."
+    overviewImage={overviewImg}
     icon={Utensils}
     whatsappMessage="Hello HouseFada, I'd like to inquire about your culinary services!"
     features={[
