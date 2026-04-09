@@ -1,5 +1,6 @@
 import ServicePageLayout from "@/components/ServicePageLayout";
 import { Sparkles } from "lucide-react";
+import overviewImg from "@/assets/service-cleaning.jpg";
 
 const CleaningPage = () => (
   <ServicePageLayout
@@ -7,7 +8,8 @@ const CleaningPage = () => (
     title="Spotless Spaces,"
     accent="Every Time."
     description="Since 2017, HouseFada Cleaning has set the gold standard for residential and commercial cleaning across Nigeria. Our trained professionals bring professionalism, reliability, and meticulous attention to detail to every job — leaving your space immaculate and refreshed."
-    longDescription="At HouseFada Cleaning, we understand that a clean environment is the foundation of productivity, health, and well-being. Our team of rigorously trained cleaning professionals uses eco-friendly, hospital-grade products and systematic, proven approaches to deliver consistent, thorough results every single time. Whether it's a cozy apartment, a sprawling family home, a corporate office, or a retail space — we treat every environment as if it were our own. With flexible scheduling, transparent pricing, and a satisfaction guarantee, we've earned the trust of thousands of clients across Nigeria since our founding in 2017. Our commitment goes beyond surface-level cleanliness; we create spaces that feel welcoming, hygienic, and truly comfortable."
+    longDescription="At HouseFada Cleaning, we understand that a clean environment is the foundation of productivity, health, and well-being. Our team of rigorously trained cleaning professionals uses eco-friendly, hospital-grade products and systematic, proven approaches to deliver consistent, thorough results every single time. Whether it's a cozy apartment, a sprawling family home, a corporate office, or a retail space — we treat every environment as if it were our own. With flexible scheduling, transparent pricing, and a satisfaction guarantee, we've earned the trust of thousands of clients across Nigeria since our founding in 2017."
+    overviewImage={overviewImg}
     icon={Sparkles}
     whatsappMessage="Hello HouseFada, I'd like to book a cleaning service!"
     features={[

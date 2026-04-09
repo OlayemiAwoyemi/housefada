@@ -1,5 +1,6 @@
 import ServicePageLayout from "@/components/ServicePageLayout";
 import { Car } from "lucide-react";
+import overviewImg from "@/assets/service-autohub.jpg";
 
 const AutoHubPage = () => (
   <ServicePageLayout
@@ -7,7 +8,8 @@ const AutoHubPage = () => (
     title="Drive Confidently,"
     accent="Own Smartly."
     description="Your one-stop automotive partner since 2017. New and pre-owned vehicles, expert maintenance, thorough inspections, and flexible financing options — everything you need to stay on the road with confidence."
-    longDescription="HouseFada AutoHub is Nigeria's trusted automotive destination for buyers, owners, and fleet managers alike. Since 2017, we've helped thousands of Nigerians find their perfect vehicle, maintain their investment, and drive with complete peace of mind. Whether you're buying your first car, upgrading to a luxury SUV, building a corporate fleet, or simply need routine maintenance — we deliver transparent pricing, certified quality, and personalised service at every step. Every vehicle we sell undergoes a rigorous multi-point inspection by certified mechanics, and our fully equipped workshop is staffed by experienced technicians who treat your car with the same expert care they'd give their own. With flexible financing options, genuine parts, and a commitment to long-term customer relationships, AutoHub isn't just where you buy a car — it's where you find a partner for the road ahead."
+    longDescription="HouseFada AutoHub is Nigeria's trusted automotive destination for buyers, owners, and fleet managers alike. Since 2017, we've helped thousands of Nigerians find their perfect vehicle, maintain their investment, and drive with complete peace of mind. Whether you're buying your first car, upgrading to a luxury SUV, building a corporate fleet, or simply need routine maintenance — we deliver transparent pricing, certified quality, and personalised service at every step. Every vehicle we sell undergoes a rigorous multi-point inspection by certified mechanics, and our fully equipped workshop is staffed by experienced technicians."
+    overviewImage={overviewImg}
     icon={Car}
     whatsappMessage="Hello HouseFada, I'd like to inquire about vehicles or auto services!"
     features={[
