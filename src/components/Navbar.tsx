@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { Link } from "react-router-dom";
+import { Menu, X } from "lucide-react";
 import logo from "@/assets/HouseFada_Logo.png";
 
 const Navbar = () => {
@@ -62,9 +63,10 @@ const Navbar = () => {
 
         <button
           onClick={() => setMobileOpen(!mobileOpen)}
-          className="md:hidden text-sm font-medium uppercase tracking-widest text-muted-foreground"
+          className="md:hidden text-muted-foreground hover:text-foreground transition-colors"
+          aria-label={mobileOpen ? "Close menu" : "Open menu"}
         >
-          {mobileOpen ? "Close" : "Menu"}
+          {mobileOpen ? <X className="h-6 w-6" /> : <Menu className="h-6 w-6" />}
         </button>
       </div>
 
