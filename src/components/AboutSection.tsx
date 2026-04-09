@@ -3,7 +3,7 @@ import logoIcon from "@/assets/HouseFada_Icon.png";
 
 const AboutSection = () => {
   return (
-    <section className="py-20 md:py-32 px-6 section-light">
+    <section className="py-20 md:py-32 px-6 lg:px-10 section-light">
       <div className="max-w-7xl mx-auto">
         <div className="grid lg:grid-cols-2 gap-12 lg:gap-20 items-start">
           <motion.div
