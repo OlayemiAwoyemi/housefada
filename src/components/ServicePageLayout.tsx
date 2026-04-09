@@ -15,6 +15,7 @@ interface ServicePageLayoutProps {
   accent: string;
   description: string;
   longDescription: string;
+  overviewImage: string;
   features: ServiceFeature[];
   icon: LucideIcon;
   whatsappMessage: string;
