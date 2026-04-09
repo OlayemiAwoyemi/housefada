@@ -49,8 +49,8 @@ const ServicePageLayout = ({
       </nav>
 
       {/* Hero */}
-      <section className="pt-28 pb-16 md:pt-36 md:pb-24 px-6 lg:px-10">
-        <div className="max-w-7xl mx-auto">
+      <section className="pt-28 pb-16 md:pt-36 md:pb-24">
+        <div className="max-w-7xl mx-auto px-6 lg:px-10">
           <motion.div
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
@@ -88,8 +88,8 @@ const ServicePageLayout = ({
       </section>
 
       {/* Long description */}
-      <section className="py-16 md:py-24 px-6 lg:px-10 section-light">
-        <div className="max-w-7xl mx-auto">
+      <section className="py-16 md:py-24 section-light">
+        <div className="max-w-7xl mx-auto px-6 lg:px-10">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
@@ -106,8 +106,8 @@ const ServicePageLayout = ({
       </section>
 
       {/* Features grid */}
-      <section className="py-16 md:py-24 px-6 lg:px-10 section-grey">
-        <div className="max-w-7xl mx-auto">
+      <section className="py-16 md:py-24 section-grey">
+        <div className="max-w-7xl mx-auto px-6 lg:px-10">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
@@ -141,8 +141,8 @@ const ServicePageLayout = ({
       </section>
 
       {/* CTA */}
-      <section className="py-16 md:py-24 px-6 lg:px-10 section-light">
-        <div className="max-w-7xl mx-auto text-center">
+      <section className="py-16 md:py-24 section-light">
+        <div className="max-w-7xl mx-auto px-6 lg:px-10 text-center">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
@@ -178,8 +178,8 @@ const ServicePageLayout = ({
       </section>
 
       {/* Footer */}
-      <footer className="bg-background border-t border-border py-8 px-6 lg:px-10">
-        <div className="max-w-7xl mx-auto flex flex-col md:flex-row items-center justify-between gap-4">
+      <footer className="bg-background border-t border-border py-8">
+        <div className="max-w-7xl mx-auto px-6 lg:px-10 flex flex-col md:flex-row items-center justify-between gap-4">
           <Link to="/" className="inline-block">
             <img src={footerLogo} alt="HouseFada" className="h-7" />
           </Link>
