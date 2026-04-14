@@ -69,7 +69,7 @@ const ServicePageLayout = ({
               </p>
               <div className="mt-8">
                 <a
-                  href={`https://wa.me/2347069510606?text=${encodeURIComponent(whatsappMessage)}`}
+                  href={`https://wa.me/2348160169189?text=${encodeURIComponent(whatsappMessage)}`}
                   target="_blank"
                   rel="noopener noreferrer"
                   className="inline-flex items-center gap-2.5 bg-accent text-accent-foreground text-sm font-semibold uppercase tracking-wider px-6 py-3 rounded-xl hover:bg-accent/90 transition-all group"
@@ -171,7 +171,7 @@ const ServicePageLayout = ({
             </p>
             <div className="flex flex-wrap gap-3 justify-center">
               <a
-                href={`https://wa.me/2347069510606?text=${encodeURIComponent(whatsappMessage)}`}
+                href={`https://wa.me/2348160169189?text=${encodeURIComponent(whatsappMessage)}`}
                 target="_blank"
                 rel="noopener noreferrer"
                 className="inline-flex items-center gap-2.5 bg-accent text-accent-foreground text-sm font-semibold uppercase tracking-wider px-6 py-3 rounded-xl hover:bg-accent/90 transition-all group"

@@ -36,7 +36,7 @@ const AboutSection = () => {
               Since 2017, HouseFada has been on a mission to redefine convenience for modern Nigeria. We believe that premium living shouldn't be reserved for the few — it should be accessible, seamless, and woven into the fabric of everyday life. That conviction drives everything we build.
             </p>
             <p className="mt-3 text-muted-on-light text-base leading-relaxed">
-              From immaculate cleaning services and chef-curated meals to reliable executive transport, farm-fresh produce, trusted automotive solutions, and cutting-edge technology — HouseFada brings together six distinct verticals under one brand, unified by an unwavering commitment to quality.
+              From immaculate cleaning services and chef-curated meals to reliable executive transport, farm-fresh produce, trusted automotive solutions, cutting-edge technology, world-class real estate development, professional publishing, and seamless travel services — HouseFada brings together nine distinct verticals under one brand, unified by an unwavering commitment to quality.
             </p>
             <p className="mt-3 text-muted-on-light text-base leading-relaxed">
               Headquartered in Redemption City, Mowe, Ogun State, we serve clients across Nigeria with a growing network of trained professionals, vetted suppliers, and technology-driven operations. Our goal is simple: handle the details of modern life so you can focus on what truly matters.

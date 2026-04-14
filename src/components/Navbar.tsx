@@ -52,7 +52,7 @@ const Navbar = () => {
             Explore Services
           </a>
           <a
-            href="https://wa.me/2347069510606?text=Hello%20HouseFada%2C%20I%27d%20like%20to%20learn%20more%20about%20your%20services!"
+            href="https://wa.me/2348160169189?text=Hello%20HouseFada%2C%20I%27d%20like%20to%20learn%20more%20about%20your%20services!"
             target="_blank"
             rel="noopener noreferrer"
             className="text-sm font-medium uppercase tracking-wider bg-accent text-accent-foreground px-5 py-2.5 rounded-xl hover:bg-accent/90 transition-all"
@@ -89,7 +89,7 @@ const Navbar = () => {
                 </button>
               ))}
               <a
-                href="https://wa.me/2347069510606?text=Hello%20HouseFada%2C%20I%27d%20like%20to%20learn%20more%20about%20your%20services!"
+                href="https://wa.me/2348160169189?text=Hello%20HouseFada%2C%20I%27d%20like%20to%20learn%20more%20about%20your%20services!"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="block text-base font-medium uppercase tracking-wider text-accent"

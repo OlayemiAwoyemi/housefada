@@ -18,11 +18,11 @@ const ContactSection = () => {
                 Ready to Experience <span className="text-accent">HouseFada?</span>
               </h2>
               <p className="mt-5 text-muted-foreground text-base leading-relaxed max-w-md">
-                Whether you need a spotless home, a gourmet meal, a reliable ride, fresh produce, a new vehicle, or expert tech support — we're just one message away. Join thousands of satisfied clients who have trusted HouseFada since 2017.
+                Whether you need a spotless home, a gourmet meal, a reliable ride, fresh produce, a new vehicle, expert tech support, a dream home built, books published, or a trip planned — we're just one message away. Join thousands of satisfied clients who have trusted HouseFada since 2017.
               </p>
               <div className="mt-8 flex flex-wrap gap-3">
                 <a
-                  href="https://wa.me/2347069510606?text=Hello%20HouseFada%2C%20I%27d%20like%20to%20learn%20more%20about%20your%20services!"
+                  href="https://wa.me/2348160169189?text=Hello%20HouseFada%2C%20I%27d%20like%20to%20learn%20more%20about%20your%20services!"
                   target="_blank"
                   rel="noopener noreferrer"
                   className="inline-flex items-center gap-2.5 bg-accent text-accent-foreground text-sm font-semibold uppercase tracking-wider px-6 py-3 rounded-xl hover:bg-accent/90 transition-all group"
@@ -44,10 +44,6 @@ const ContactSection = () => {
                 <div className="text-xs font-semibold text-muted-foreground mb-1.5 uppercase tracking-widest">Phone</div>
                 <a href="tel:+2348160169189" className="text-foreground hover:text-accent transition-colors text-base">
                   +234 816 016 9189
-                </a>
-                <br />
-                <a href="tel:+2347069510606" className="text-foreground hover:text-accent transition-colors text-base">
-                  +234 706 951 0606
                 </a>
               </div>
               <div>

@@ -22,6 +22,8 @@ const Footer = () => {
                 { label: "Cleaning", href: "/cleaning" },
                 { label: "Culinary", href: "/culinary" },
                 { label: "Mobility", href: "/mobility" },
+                { label: "AgroFresh", href: "/agrofresh" },
+                { label: "AutoHub", href: "/autohub" },
               ].map((link) => (
                 <Link key={link.href} to={link.href} onClick={() => window.scrollTo(0, 0)} className="block text-sm text-foreground/70 hover:text-accent transition-colors">
                   {link.label}
@@ -34,9 +36,10 @@ const Footer = () => {
             <div className="text-xs font-semibold text-muted-foreground uppercase tracking-widest mb-4">More</div>
             <div className="space-y-2.5">
               {[
-                { label: "AgroFresh", href: "/agrofresh" },
-                { label: "AutoHub", href: "/autohub" },
                 { label: "Tech Innovations", href: "/tech" },
+                { label: "Real Estate", href: "/realestate" },
+                { label: "Publishing", href: "/publishing" },
+                { label: "Travel & Tourism", href: "/travel" },
               ].map((link) => (
                 <Link key={link.href} to={link.href} onClick={() => window.scrollTo(0, 0)} className="block text-sm text-foreground/70 hover:text-accent transition-colors">
                   {link.label}
@@ -48,9 +51,9 @@ const Footer = () => {
           <div>
             <div className="text-xs font-semibold text-muted-foreground uppercase tracking-widest mb-4">Contact</div>
             <div className="space-y-2.5 text-sm text-foreground/70">
-              <a href="tel:+2347069510606" className="block hover:text-accent transition-colors">+234 706 951 0606</a>
+              <a href="tel:+2348160169189" className="block hover:text-accent transition-colors">+234 816 016 9189</a>
               <a href="mailto:housefada@yahoo.com" className="block hover:text-accent transition-colors">housefada@yahoo.com</a>
-              <a href="https://wa.me/2347069510606" target="_blank" rel="noopener noreferrer" className="block hover:text-accent transition-colors">WhatsApp</a>
+              <a href="https://wa.me/2348160169189" target="_blank" rel="noopener noreferrer" className="block hover:text-accent transition-colors">WhatsApp</a>
             </div>
           </div>
         </div>
