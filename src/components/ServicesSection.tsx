@@ -1,6 +1,6 @@
 import { motion } from "framer-motion";
 import { Link } from "react-router-dom";
-import { ArrowRight, Sparkles, Utensils, Truck, Leaf, Car, Cpu } from "lucide-react";
+import { ArrowRight, Sparkles, Utensils, Truck, Leaf, Car, Cpu, Building2, BookOpen, Plane } from "lucide-react";
 
 const services = [
   {
@@ -39,6 +39,24 @@ const services = [
     icon: Cpu,
     href: "/tech",
   },
+  {
+    name: "Real Estate & Construction",
+    description: "From land acquisition and architectural design to full-scale construction, renovation, and bespoke interior decoration — we transform your property visions into stunning realities.",
+    icon: Building2,
+    href: "/realestate",
+  },
+  {
+    name: "Publishing & Printing",
+    description: "Complete book publishing, commercial printing, branded stationery, and print media solutions. We bring your ideas to life with precision, quality, and exceptional craftsmanship.",
+    icon: BookOpen,
+    href: "/publishing",
+  },
+  {
+    name: "Travel & Tourism",
+    description: "Flight bookings, visa processing, curated holiday packages, and corporate travel management. We make every journey seamless, affordable, and unforgettable for Nigerians everywhere.",
+    icon: Plane,
+    href: "/travel",
+  },
 ];
 
 const ServicesSection = () => {
@@ -66,7 +84,7 @@ const ServicesSection = () => {
             One Brand. Every <span className="text-accent">Solution.</span>
           </h2>
           <p className="mt-3 text-muted-foreground text-base leading-relaxed">
-            Since 2017, HouseFada has empowered modern living by delivering premium services across six verticals. We handle the complexities of everyday life so you can focus on what truly matters — your family, your career, and your ambitions.
+            Since 2017, HouseFada has empowered modern living by delivering premium services across nine verticals. We handle the complexities of everyday life so you can focus on what truly matters — your family, your career, and your ambitions.
           </p>
         </motion.div>
 
@@ -77,12 +95,12 @@ const ServicesSection = () => {
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
-              transition={{ duration: 0.5, delay: index * 0.08 }}
+              transition={{ duration: 0.5, delay: index * 0.06 }}
             >
               <Link
                 to={service.href}
                 onClick={() => window.scrollTo(0, 0)}
-                className="block bg-background border border-border p-7 md:p-8 rounded-xl group hover:bg-surface hover:border-accent/30 transition-all h-full"
+                className="block bg-background border border-border p-7 md:p-8 rounded-xl group hover:bg-surface hover:border-accent/30 hover:scale-[1.02] transition-all duration-200 h-full"
               >
                 <service.icon className="w-8 h-8 text-accent mb-5" />
                 <h3 className="text-lg font-bold tracking-tight mb-2 group-hover:text-accent transition-colors">
