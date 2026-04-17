@@ -24,7 +24,10 @@ export const TRANSACTION_STATUSES = [
 export type TransactionStatus = (typeof TRANSACTION_STATUSES)[number]["value"];
 
 export const formatNaira = (n: number) =>
-  new Intl.NumberFormat("en-NG", { style: "currency", currency: "NGN", minimumFractionDigits: 2 }).format(n || 0);
+  // Use "NGN " prefix instead of the ₦ glyph because jsPDF's built-in Helvetica
+  // renders ₦ as a broken glyph (e.g. "¦"). This keeps PDFs and UI consistent.
+  "NGN " +
+  new Intl.NumberFormat("en-NG", { minimumFractionDigits: 2, maximumFractionDigits: 2 }).format(n || 0);
 
 export const generateInvoiceNumber = () => {
   const d = new Date();
@@ -32,3 +35,17 @@ export const generateInvoiceNumber = () => {
   const rand = Math.floor(1000 + Math.random() * 9000);
   return `INV-${ymd}-${rand}`;
 };
+
+export const COMPANY = {
+  name: "HouseFada Resources",
+  email: "housefada@yahoo.com",
+  phone: "+234 816 016 9189",
+  website: "housefada.lovable.app",
+  address: "Redemption City, Mowe, Ogun State, Nigeria",
+  rc: "RC 9363567",
+};
+
+export const BANK_ACCOUNTS = [
+  { bank: "Zenith Bank", number: "1016142555", name: "HOUSEFADA RESOURCES" },
+  { bank: "Premium Trust Bank", number: "0040134291", name: "HOUSEFADA RESOURCES" },
+];

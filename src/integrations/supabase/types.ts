@@ -20,6 +20,7 @@ export type Database = {
           id: string
           item_name: string
           quantity: number
+          service_type: string
           transaction_id: string
           unit_price: number
         }
@@ -28,6 +29,7 @@ export type Database = {
           id?: string
           item_name: string
           quantity?: number
+          service_type?: string
           transaction_id: string
           unit_price?: number
         }
@@ -36,6 +38,7 @@ export type Database = {
           id?: string
           item_name?: string
           quantity?: number
+          service_type?: string
           transaction_id?: string
           unit_price?: number
         }

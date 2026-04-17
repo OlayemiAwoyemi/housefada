@@ -1,5 +1,5 @@
-import { useEffect, useState } from "react";
-import { X, Download, FileText, Receipt, Trash2 } from "lucide-react";
+import { useEffect, useMemo, useState } from "react";
+import { X, FileText, Receipt, Trash2, Mail, MessageCircle, Download } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Label } from "@/components/ui/label";
 import {
@@ -12,7 +12,8 @@ import {
 import { supabase } from "@/integrations/supabase/client";
 import { toast } from "@/hooks/use-toast";
 import { TRANSACTION_STATUSES, TransactionStatus, formatNaira } from "@/lib/services";
-import { generateReceiptPdf } from "@/lib/receiptPdf";
+import { downloadReceiptPdf, ReceiptData } from "@/lib/receiptPdf";
+import { shareViaEmail, shareViaWhatsApp } from "@/lib/shareReceipt";
 
 interface Transaction {
   id: string;
@@ -30,6 +31,7 @@ interface Transaction {
 
 interface Item {
   id: string;
+  service_type: string | null;
   item_name: string;
   quantity: number;
   unit_price: number;
@@ -48,6 +50,7 @@ export const TransactionDetail = ({
   const [items, setItems] = useState<Item[]>([]);
   const [loading, setLoading] = useState(true);
   const [savingStatus, setSavingStatus] = useState(false);
+  const [busy, setBusy] = useState<string | null>(null);
 
   const load = async () => {
     setLoading(true);
@@ -64,6 +67,16 @@ export const TransactionDetail = ({
     load();
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [transactionId]);
+
+  const groupedItems = useMemo(() => {
+    const map = new Map<string, Item[]>();
+    items.forEach((it) => {
+      const key = it.service_type || tx?.service_type || "Other";
+      if (!map.has(key)) map.set(key, []);
+      map.get(key)!.push(it);
+    });
+    return Array.from(map.entries());
+  }, [items, tx]);
 
   const updateStatus = async (newStatus: TransactionStatus) => {
     if (!tx) return;
@@ -94,18 +107,26 @@ export const TransactionDetail = ({
     onClose();
   };
 
-  const downloadInvoice = () => {
-    if (!tx) return;
-    generateReceiptPdf({
-      type: "INVOICE",
+  const buildData = (type: "INVOICE" | "RECEIPT"): ReceiptData | null => {
+    if (!tx) return null;
+    return {
+      type,
       ...tx,
-      items: items.map((i) => ({ item_name: i.item_name, quantity: i.quantity, unit_price: i.unit_price })),
-    });
+      items: items.map((i) => ({
+        item_name: i.item_name,
+        quantity: i.quantity,
+        unit_price: i.unit_price,
+        service_type: i.service_type ?? tx.service_type,
+      })),
+    };
   };
 
-  const downloadReceipt = () => {
-    if (!tx) return;
-    if (tx.status !== "paid" && tx.status !== "completed") {
+  const isPaid = tx?.status === "paid" || tx?.status === "completed";
+
+  const handle = async (action: "download" | "email" | "whatsapp", type: "INVOICE" | "RECEIPT") => {
+    const data = buildData(type);
+    if (!data) return;
+    if (type === "RECEIPT" && !isPaid) {
       toast({
         title: "Not paid yet",
         description: "Mark the transaction as Paid before generating a receipt.",
@@ -113,11 +134,27 @@ export const TransactionDetail = ({
       });
       return;
     }
-    generateReceiptPdf({
-      type: "RECEIPT",
-      ...tx,
-      items: items.map((i) => ({ item_name: i.item_name, quantity: i.quantity, unit_price: i.unit_price })),
-    });
+    const key = `${action}-${type}`;
+    setBusy(key);
+    try {
+      if (action === "download") await downloadReceiptPdf(data);
+      else if (action === "email") await shareViaEmail(data);
+      else await shareViaWhatsApp(data);
+      if (action !== "download") {
+        toast({
+          title: "PDF downloaded",
+          description: `Attach the ${type.toLowerCase()} PDF in the ${action === "email" ? "email" : "WhatsApp chat"} that just opened.`,
+        });
+      }
+    } catch (e) {
+      toast({
+        title: "Failed",
+        description: e instanceof Error ? e.message : "Could not complete action.",
+        variant: "destructive",
+      });
+    } finally {
+      setBusy(null);
+    }
   };
 
   return (
@@ -172,24 +209,33 @@ export const TransactionDetail = ({
               </Select>
             </section>
 
-            {/* Items */}
+            {/* Items grouped by service */}
             <section>
               <p className="text-sm font-semibold text-muted-foreground uppercase tracking-wider mb-2">Items</p>
-              <div className="border border-border rounded-xl divide-y divide-border overflow-hidden">
-                {items.map((it) => (
-                  <div key={it.id} className="px-4 py-3 flex justify-between gap-3 text-sm">
-                    <div>
-                      <p className="font-medium">{it.item_name}</p>
-                      <p className="text-muted-foreground text-xs">
-                        {it.quantity} × {formatNaira(it.unit_price)}
-                      </p>
+              <div className="border border-border rounded-xl overflow-hidden">
+                {groupedItems.map(([svc, list]) => (
+                  <div key={svc}>
+                    <div className="px-4 py-2 bg-secondary/60 text-xs font-semibold uppercase tracking-wider text-muted-foreground">
+                      {svc}
                     </div>
-                    <div className="font-semibold whitespace-nowrap">
-                      {formatNaira(it.quantity * it.unit_price)}
+                    <div className="divide-y divide-border">
+                      {list.map((it) => (
+                        <div key={it.id} className="px-4 py-3 flex justify-between gap-3 text-sm">
+                          <div>
+                            <p className="font-medium">{it.item_name}</p>
+                            <p className="text-muted-foreground text-xs">
+                              {it.quantity} × {formatNaira(it.unit_price)}
+                            </p>
+                          </div>
+                          <div className="font-semibold whitespace-nowrap">
+                            {formatNaira(it.quantity * it.unit_price)}
+                          </div>
+                        </div>
+                      ))}
                     </div>
                   </div>
                 ))}
-                <div className="px-4 py-3 flex justify-between bg-secondary/50">
+                <div className="px-4 py-3 flex justify-between bg-secondary/50 border-t border-border">
                   <span className="font-semibold">Total</span>
                   <span className="font-display text-lg font-bold text-accent">
                     {formatNaira(tx.total_amount)}
@@ -205,14 +251,38 @@ export const TransactionDetail = ({
               </section>
             )}
 
-            {/* Actions */}
-            <section className="grid sm:grid-cols-2 gap-3 pt-2">
-              <Button variant="secondary" onClick={downloadInvoice}>
-                <FileText className="w-4 h-4 mr-2" /> Download Invoice PDF
-              </Button>
-              <Button onClick={downloadReceipt} disabled={tx.status !== "paid" && tx.status !== "completed"}>
-                <Receipt className="w-4 h-4 mr-2" /> Download Receipt PDF
-              </Button>
+            {/* Invoice actions */}
+            <section className="space-y-2">
+              <p className="text-xs font-semibold text-muted-foreground uppercase tracking-wider">Invoice</p>
+              <div className="grid grid-cols-1 sm:grid-cols-3 gap-2">
+                <Button variant="secondary" onClick={() => handle("download", "INVOICE")} disabled={busy === "download-INVOICE"}>
+                  <Download className="w-4 h-4 mr-2" /> Download
+                </Button>
+                <Button variant="secondary" onClick={() => handle("email", "INVOICE")} disabled={busy === "email-INVOICE"}>
+                  <Mail className="w-4 h-4 mr-2" /> Email
+                </Button>
+                <Button variant="secondary" onClick={() => handle("whatsapp", "INVOICE")} disabled={busy === "whatsapp-INVOICE"}>
+                  <MessageCircle className="w-4 h-4 mr-2" /> WhatsApp
+                </Button>
+              </div>
+            </section>
+
+            {/* Receipt actions */}
+            <section className="space-y-2">
+              <p className="text-xs font-semibold text-muted-foreground uppercase tracking-wider">
+                Receipt {!isPaid && <span className="text-destructive normal-case">(mark Paid first)</span>}
+              </p>
+              <div className="grid grid-cols-1 sm:grid-cols-3 gap-2">
+                <Button onClick={() => handle("download", "RECEIPT")} disabled={!isPaid || busy === "download-RECEIPT"}>
+                  <Receipt className="w-4 h-4 mr-2" /> Download
+                </Button>
+                <Button onClick={() => handle("email", "RECEIPT")} disabled={!isPaid || busy === "email-RECEIPT"}>
+                  <Mail className="w-4 h-4 mr-2" /> Email
+                </Button>
+                <Button onClick={() => handle("whatsapp", "RECEIPT")} disabled={!isPaid || busy === "whatsapp-RECEIPT"}>
+                  <MessageCircle className="w-4 h-4 mr-2" /> WhatsApp
+                </Button>
+              </div>
             </section>
 
             <button
