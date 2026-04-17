@@ -68,7 +68,7 @@ export const TransactionDetail = ({
   const updateStatus = async (newStatus: TransactionStatus) => {
     if (!tx) return;
     setSavingStatus(true);
-    const patch: Record<string, unknown> = { status: newStatus };
+    const patch: { status: TransactionStatus; paid_at?: string } = { status: newStatus };
     if (newStatus === "paid" && !tx.paid_at) patch.paid_at = new Date().toISOString();
     const { error } = await supabase.from("transactions").update(patch).eq("id", tx.id);
     setSavingStatus(false);
