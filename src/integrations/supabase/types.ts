@@ -10,11 +10,90 @@ export type Database = {
   // Allows to automatically instantiate createClient with right options
   // instead of createClient<Database, { PostgrestVersion: 'XX' }>(URL, KEY)
   __InternalSupabase: {
-    PostgrestVersion: "14.1"
+    PostgrestVersion: "14.5"
   }
   public: {
     Tables: {
-      [_ in never]: never
+      transaction_items: {
+        Row: {
+          created_at: string
+          id: string
+          item_name: string
+          quantity: number
+          transaction_id: string
+          unit_price: number
+        }
+        Insert: {
+          created_at?: string
+          id?: string
+          item_name: string
+          quantity?: number
+          transaction_id: string
+          unit_price?: number
+        }
+        Update: {
+          created_at?: string
+          id?: string
+          item_name?: string
+          quantity?: number
+          transaction_id?: string
+          unit_price?: number
+        }
+        Relationships: [
+          {
+            foreignKeyName: "transaction_items_transaction_id_fkey"
+            columns: ["transaction_id"]
+            isOneToOne: false
+            referencedRelation: "transactions"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      transactions: {
+        Row: {
+          client_email: string
+          client_name: string
+          client_whatsapp: string
+          created_at: string
+          id: string
+          invoice_number: string
+          notes: string | null
+          paid_at: string | null
+          service_type: string
+          status: Database["public"]["Enums"]["transaction_status"]
+          total_amount: number
+          updated_at: string
+        }
+        Insert: {
+          client_email: string
+          client_name: string
+          client_whatsapp: string
+          created_at?: string
+          id?: string
+          invoice_number: string
+          notes?: string | null
+          paid_at?: string | null
+          service_type: string
+          status?: Database["public"]["Enums"]["transaction_status"]
+          total_amount?: number
+          updated_at?: string
+        }
+        Update: {
+          client_email?: string
+          client_name?: string
+          client_whatsapp?: string
+          created_at?: string
+          id?: string
+          invoice_number?: string
+          notes?: string | null
+          paid_at?: string | null
+          service_type?: string
+          status?: Database["public"]["Enums"]["transaction_status"]
+          total_amount?: number
+          updated_at?: string
+        }
+        Relationships: []
+      }
     }
     Views: {
       [_ in never]: never
@@ -23,7 +102,12 @@ export type Database = {
       [_ in never]: never
     }
     Enums: {
-      [_ in never]: never
+      transaction_status:
+        | "pending"
+        | "in_progress"
+        | "paid"
+        | "completed"
+        | "cancelled"
     }
     CompositeTypes: {
       [_ in never]: never
@@ -150,6 +234,14 @@ export type CompositeTypes<
 
 export const Constants = {
   public: {
-    Enums: {},
+    Enums: {
+      transaction_status: [
+        "pending",
+        "in_progress",
+        "paid",
+        "completed",
+        "cancelled",
+      ],
+    },
   },
 } as const
