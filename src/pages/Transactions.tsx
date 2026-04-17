@@ -96,7 +96,7 @@ const Transactions = () => {
             </div>
             <div>
               <h1 className="text-lg font-display font-bold leading-tight">Transactions</h1>
-              <p className="text-xs text-muted-foreground">SatGo Admin</p>
+              <p className="text-xs text-muted-foreground">HouseFada Admin</p>
             </div>
           </div>
           <div className="flex items-center gap-2">

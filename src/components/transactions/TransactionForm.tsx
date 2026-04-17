@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useMemo, useState } from "react";
 import { Plus, Trash2, X } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
@@ -16,6 +16,7 @@ import { supabase } from "@/integrations/supabase/client";
 import { toast } from "@/hooks/use-toast";
 
 interface Item {
+  service_type: string;
   item_name: string;
   quantity: number;
   unit_price: number;
@@ -25,31 +26,45 @@ export const TransactionForm = ({ onClose, onCreated }: { onClose: () => void; o
   const [clientName, setClientName] = useState("");
   const [clientEmail, setClientEmail] = useState("");
   const [clientWhatsapp, setClientWhatsapp] = useState("");
-  const [serviceType, setServiceType] = useState<string>("");
   const [notes, setNotes] = useState("");
-  const [items, setItems] = useState<Item[]>([{ item_name: "", quantity: 1, unit_price: 0 }]);
+  const [items, setItems] = useState<Item[]>([
+    { service_type: "Cleaning Services", item_name: "", quantity: 1, unit_price: 0 },
+  ]);
   const [submitting, setSubmitting] = useState(false);
 
   const total = items.reduce((s, it) => s + (it.quantity || 0) * (it.unit_price || 0), 0);
 
+  // Aggregate selected services for the transaction's primary service_type field
+  const selectedServices = useMemo(() => {
+    const set = new Set<string>();
+    items.forEach((i) => i.service_type && set.add(i.service_type));
+    return Array.from(set);
+  }, [items]);
+
   const updateItem = (idx: number, patch: Partial<Item>) =>
     setItems((arr) => arr.map((it, i) => (i === idx ? { ...it, ...patch } : it)));
-  const addItem = () => setItems((a) => [...a, { item_name: "", quantity: 1, unit_price: 0 }]);
+  const addItem = () =>
+    setItems((a) => [
+      ...a,
+      { service_type: a[a.length - 1]?.service_type ?? "Cleaning Services", item_name: "", quantity: 1, unit_price: 0 },
+    ]);
   const removeItem = (idx: number) => setItems((a) => a.filter((_, i) => i !== idx));
 
   const submit = async () => {
-    if (!clientName.trim() || !clientEmail.trim() || !clientWhatsapp.trim() || !serviceType) {
-      toast({ title: "Missing info", description: "Please fill all client and service fields.", variant: "destructive" });
+    if (!clientName.trim() || !clientEmail.trim() || !clientWhatsapp.trim()) {
+      toast({ title: "Missing info", description: "Please fill all client fields.", variant: "destructive" });
       return;
     }
-    const cleanItems = items.filter((i) => i.item_name.trim() && i.quantity > 0);
+    const cleanItems = items.filter((i) => i.item_name.trim() && i.quantity > 0 && i.service_type);
     if (cleanItems.length === 0) {
-      toast({ title: "No items", description: "Add at least one item or service.", variant: "destructive" });
+      toast({ title: "No items", description: "Add at least one item with a service.", variant: "destructive" });
       return;
     }
 
     setSubmitting(true);
     const invoice_number = generateInvoiceNumber();
+    const primaryService = selectedServices.join(", ");
+
     const { data: tx, error: txErr } = await supabase
       .from("transactions")
       .insert({
@@ -57,7 +72,7 @@ export const TransactionForm = ({ onClose, onCreated }: { onClose: () => void; o
         client_name: clientName.trim(),
         client_email: clientEmail.trim(),
         client_whatsapp: clientWhatsapp.trim(),
-        service_type: serviceType,
+        service_type: primaryService,
         notes: notes.trim() || null,
         total_amount: total,
         status: "pending",
@@ -74,6 +89,7 @@ export const TransactionForm = ({ onClose, onCreated }: { onClose: () => void; o
     const { error: itemsErr } = await supabase.from("transaction_items").insert(
       cleanItems.map((it) => ({
         transaction_id: tx.id,
+        service_type: it.service_type,
         item_name: it.item_name.trim(),
         quantity: it.quantity,
         unit_price: it.unit_price,
@@ -113,30 +129,22 @@ export const TransactionForm = ({ onClose, onCreated }: { onClose: () => void; o
                 <Label htmlFor="ce">Email</Label>
                 <Input id="ce" type="email" value={clientEmail} onChange={(e) => setClientEmail(e.target.value)} placeholder="client@email.com" />
               </div>
-              <div className="space-y-1.5">
+              <div className="space-y-1.5 sm:col-span-2">
                 <Label htmlFor="cw">WhatsApp Number</Label>
                 <Input id="cw" value={clientWhatsapp} onChange={(e) => setClientWhatsapp(e.target.value)} placeholder="+234 800 000 0000" />
               </div>
-              <div className="space-y-1.5">
-                <Label htmlFor="st">Service Type</Label>
-                <Select value={serviceType} onValueChange={setServiceType}>
-                  <SelectTrigger id="st">
-                    <SelectValue placeholder="Select service" />
-                  </SelectTrigger>
-                  <SelectContent>
-                    {SERVICE_TYPES.map((s) => (
-                      <SelectItem key={s} value={s}>{s}</SelectItem>
-                    ))}
-                  </SelectContent>
-                </Select>
-              </div>
             </div>
+            {selectedServices.length > 0 && (
+              <p className="text-xs text-muted-foreground">
+                Services on this invoice: <span className="font-medium text-foreground">{selectedServices.join(", ")}</span>
+              </p>
+            )}
           </section>
 
           {/* Items */}
           <section className="space-y-3">
             <div className="flex items-center justify-between">
-              <h3 className="text-sm font-semibold text-muted-foreground uppercase tracking-wider">Items</h3>
+              <h3 className="text-sm font-semibold text-muted-foreground uppercase tracking-wider">Items (multi-service)</h3>
               <Button type="button" size="sm" variant="secondary" onClick={addItem}>
                 <Plus className="w-4 h-4 mr-1" /> Add item
               </Button>
@@ -147,11 +155,32 @@ export const TransactionForm = ({ onClose, onCreated }: { onClose: () => void; o
                 const sub = (it.quantity || 0) * (it.unit_price || 0);
                 return (
                   <div key={idx} className="bg-secondary/40 border border-border rounded-xl p-3 space-y-2">
-                    <Input
-                      placeholder="Item / service description"
-                      value={it.item_name}
-                      onChange={(e) => updateItem(idx, { item_name: e.target.value })}
-                    />
+                    <div className="grid grid-cols-12 gap-2">
+                      <div className="col-span-12 sm:col-span-5 space-y-1">
+                        <Label className="text-xs">Service</Label>
+                        <Select
+                          value={it.service_type}
+                          onValueChange={(v) => updateItem(idx, { service_type: v })}
+                        >
+                          <SelectTrigger>
+                            <SelectValue placeholder="Select service" />
+                          </SelectTrigger>
+                          <SelectContent>
+                            {SERVICE_TYPES.map((s) => (
+                              <SelectItem key={s} value={s}>{s}</SelectItem>
+                            ))}
+                          </SelectContent>
+                        </Select>
+                      </div>
+                      <div className="col-span-12 sm:col-span-7 space-y-1">
+                        <Label className="text-xs">Item / description</Label>
+                        <Input
+                          placeholder="e.g. Full House Cleaning"
+                          value={it.item_name}
+                          onChange={(e) => updateItem(idx, { item_name: e.target.value })}
+                        />
+                      </div>
+                    </div>
                     <div className="grid grid-cols-12 gap-2 items-end">
                       <div className="col-span-3 space-y-1">
                         <Label className="text-xs">Qty</Label>
@@ -164,7 +193,7 @@ export const TransactionForm = ({ onClose, onCreated }: { onClose: () => void; o
                         />
                       </div>
                       <div className="col-span-5 space-y-1">
-                        <Label className="text-xs">Unit price (₦)</Label>
+                        <Label className="text-xs">Unit price (NGN)</Label>
                         <Input
                           type="number"
                           min={0}
