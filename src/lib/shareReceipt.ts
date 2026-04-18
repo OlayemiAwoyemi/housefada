@@ -21,7 +21,9 @@ const buildMessage = (data: ReceiptData) => {
   ].join("\n");
 };
 
-const triggerDownload = async (data: ReceiptData) => {
+export const buildShareMessage = buildMessage;
+
+export const downloadPdfFor = async (data: ReceiptData) => {
   const blob = await generateReceiptPdf(data);
   const url = URL.createObjectURL(blob);
   const a = document.createElement("a");
@@ -36,32 +38,24 @@ const triggerDownload = async (data: ReceiptData) => {
 const sanitizeWhatsapp = (raw: string) => {
   const digits = (raw || "").replace(/\D/g, "");
   if (!digits) return "";
-  // Nigerian numbers: 0XXXXXXXXXX -> 234XXXXXXXXXX
   if (digits.startsWith("0") && digits.length === 11) return "234" + digits.slice(1);
   if (digits.startsWith("234")) return digits;
   return digits;
 };
 
-/** Open user's email client with a prefilled message and download the PDF for attachment. */
-export const shareViaEmail = async (data: ReceiptData) => {
+/** Build the mailto URL (does not open it). */
+export const buildEmailUrl = (data: ReceiptData) => {
   const subject = `${data.type === "INVOICE" ? "Invoice" : "Receipt"} ${data.invoice_number} — ${COMPANY.name}`;
   const body = buildMessage(data);
-  // Trigger PDF download so the admin can attach it manually.
-  await triggerDownload(data);
-  const href = `mailto:${encodeURIComponent(data.client_email)}?subject=${encodeURIComponent(
+  return `mailto:${encodeURIComponent(data.client_email)}?subject=${encodeURIComponent(
     subject
-  )}&body=${encodeURIComponent(body + "\n\n(Please attach the PDF that just downloaded.)")}`;
-  window.location.href = href;
+  )}&body=${encodeURIComponent(body + "\n\n(Please attach the PDF you just downloaded.)")}`;
 };
 
-/** Open WhatsApp Web/app with a prefilled message and download the PDF for attachment. */
-export const shareViaWhatsApp = async (data: ReceiptData) => {
+/** Build the WhatsApp share URL (does not open it). Throws if number invalid. */
+export const buildWhatsappUrl = (data: ReceiptData) => {
   const phone = sanitizeWhatsapp(data.client_whatsapp);
-  if (!phone) {
-    throw new Error("Invalid WhatsApp number");
-  }
-  await triggerDownload(data);
+  if (!phone) throw new Error("Invalid WhatsApp number");
   const text = encodeURIComponent(buildMessage(data) + "\n\n(PDF attached separately.)");
-  const url = `https://wa.me/${phone}?text=${text}`;
-  window.open(url, "_blank", "noopener,noreferrer");
+  return `https://wa.me/${phone}?text=${text}`;
 };
