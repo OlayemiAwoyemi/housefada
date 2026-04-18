@@ -21,7 +21,7 @@ import {
 } from "@/components/ui/alert-dialog";
 import { supabase } from "@/integrations/supabase/client";
 import { toast } from "@/hooks/use-toast";
-import { TRANSACTION_STATUSES, TransactionStatus, formatNaira } from "@/lib/services";
+import { TRANSACTION_STATUSES, TransactionStatus, formatNaira, toTitleCase, toSentenceCase } from "@/lib/services";
 import { downloadReceiptPdf, ReceiptData } from "@/lib/receiptPdf";
 import {
   buildEmailUrl,
@@ -225,8 +225,8 @@ export const TransactionDetail = ({
             <section className="grid sm:grid-cols-2 gap-3 text-sm bg-secondary/30 border border-border rounded-xl p-4">
               <div>
                 <p className="text-muted-foreground text-[10px] uppercase tracking-[0.15em]">Client</p>
-                <p className="font-semibold mt-0.5">{tx.client_name}</p>
-                <p className="text-muted-foreground">{tx.client_email}</p>
+                <p className="font-semibold mt-0.5">{toTitleCase(tx.client_name)}</p>
+                <p className="text-muted-foreground">{tx.client_email.toLowerCase()}</p>
                 <p className="text-muted-foreground">WhatsApp: {tx.client_whatsapp}</p>
               </div>
               <div>
@@ -269,7 +269,7 @@ export const TransactionDetail = ({
                       {list.map((it) => (
                         <div key={it.id} className="px-4 py-3 flex justify-between gap-3 text-sm">
                           <div>
-                            <p className="font-medium">{it.item_name}</p>
+                            <p className="font-medium">{toTitleCase(it.item_name)}</p>
                             <p className="text-muted-foreground text-xs">
                               {it.quantity} × {formatNaira(it.unit_price)}
                             </p>
@@ -294,7 +294,7 @@ export const TransactionDetail = ({
             {tx.notes && (
               <section className="text-sm">
                 <p className="text-muted-foreground text-xs uppercase tracking-wider mb-1">Notes</p>
-                <p className="whitespace-pre-wrap">{tx.notes}</p>
+                <p className="whitespace-pre-wrap">{toSentenceCase(tx.notes)}</p>
               </section>
             )}
 
