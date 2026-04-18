@@ -1,6 +1,6 @@
 import jsPDF from "jspdf";
 import autoTable from "jspdf-autotable";
-import { BANK_ACCOUNTS, COMPANY, SERVICE_TYPES, formatNaira } from "./services";
+import { BANK_ACCOUNTS, COMPANY, SERVICE_TYPES, formatNaira, toTitleCase, toSentenceCase } from "./services";
 import logoUrl from "@/assets/housefada-logo.png";
 
 export interface ReceiptItem {
@@ -87,10 +87,10 @@ export const generateReceiptPdf = async (data: ReceiptData): Promise<Blob> => {
   y += 6;
   doc.setFont("helvetica", "normal");
   doc.setFontSize(10);
-  doc.text(data.client_name, margin, y);
+  doc.text(toTitleCase(data.client_name), margin, y);
   doc.text(`Date: ${new Date(data.created_at).toLocaleDateString("en-NG")}`, pageW / 2, y);
   y += 5;
-  doc.text(data.client_email, margin, y);
+  doc.text(data.client_email.toLowerCase(), margin, y);
   doc.text(`Service: ${data.service_type}`, pageW / 2, y);
   y += 5;
   doc.text(`WhatsApp: ${data.client_whatsapp}`, margin, y);
@@ -130,7 +130,7 @@ export const generateReceiptPdf = async (data: ReceiptData): Promise<Blob> => {
     for (const it of list) {
       body.push([
         { content: String(counter++) },
-        { content: it.item_name },
+        { content: toTitleCase(it.item_name) },
         { content: String(it.quantity) },
         { content: formatNaira(it.unit_price) },
         { content: formatNaira((it.quantity || 0) * (it.unit_price || 0)) },
@@ -184,7 +184,7 @@ export const generateReceiptPdf = async (data: ReceiptData): Promise<Blob> => {
     doc.setFontSize(10);
     doc.text("Notes", margin, finalY);
     doc.setFont("helvetica", "normal");
-    const wrapped = doc.splitTextToSize(data.notes, pageW - margin * 2);
+    const wrapped = doc.splitTextToSize(toSentenceCase(data.notes), pageW - margin * 2);
     doc.text(wrapped, margin, finalY + 5);
     finalY += 5 + wrapped.length * 4;
   }
