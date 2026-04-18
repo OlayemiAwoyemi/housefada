@@ -52,29 +52,19 @@ export const generateReceiptPdf = async (data: ReceiptData): Promise<Blob> => {
   doc.setFillColor(15, 15, 15);
   doc.rect(0, 0, pageW, headerH, "F");
 
-  // Logo (icon) + wordmark + slogan on the left
-  let textX = margin;
+  // Logo only (wordmark is baked into the asset)
   try {
     const logo = await loadImage(logoUrl);
-    const logoH = 16;
+    const logoH = 18;
     const logoW = (logo.w / logo.h) * logoH;
-    doc.addImage(logo.dataUrl, "PNG", margin, 8, logoW, logoH);
-    textX = margin + logoW + 4;
+    doc.addImage(logo.dataUrl, "PNG", margin, (headerH - logoH) / 2, logoW, logoH);
   } catch {
-    // no-op, wordmark below still renders
+    // Fallback to text logo
+    doc.setTextColor(255, 255, 255);
+    doc.setFont("helvetica", "bold");
+    doc.setFontSize(20);
+    doc.text("HouseFada", margin, 22);
   }
-
-  // Wordmark
-  doc.setTextColor(255, 255, 255);
-  doc.setFont("helvetica", "bold");
-  doc.setFontSize(20);
-  doc.text("HouseFada", textX, 18);
-
-  // Slogan
-  doc.setFont("helvetica", "normal");
-  doc.setFontSize(8.5);
-  doc.setTextColor(200, 200, 200);
-  doc.text("Premium Living Solutions for Modern Nigeria", textX, 24);
 
   // Document title (right side of header)
   doc.setTextColor(231, 0, 70);
