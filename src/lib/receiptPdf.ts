@@ -1,7 +1,7 @@
 import jsPDF from "jspdf";
 import autoTable from "jspdf-autotable";
 import { BANK_ACCOUNTS, COMPANY, SERVICE_TYPES, formatNaira } from "./services";
-import logoUrl from "@/assets/HouseFada_Logo_Full.png";
+import logoUrl from "@/assets/housefada-logo.png";
 
 export interface ReceiptItem {
   item_name: string;
@@ -48,35 +48,47 @@ export const generateReceiptPdf = async (data: ReceiptData): Promise<Blob> => {
   const margin = 15;
 
   // ==== Header band ====
+  const headerH = 40;
   doc.setFillColor(15, 15, 15);
-  doc.rect(0, 0, pageW, 34, "F");
+  doc.rect(0, 0, pageW, headerH, "F");
 
+  // Logo (icon) + wordmark + slogan on the left
+  let textX = margin;
   try {
     const logo = await loadImage(logoUrl);
-    const logoH = 14;
+    const logoH = 16;
     const logoW = (logo.w / logo.h) * logoH;
-    doc.addImage(logo.dataUrl, "PNG", margin, 10, logoW, logoH);
+    doc.addImage(logo.dataUrl, "PNG", margin, 8, logoW, logoH);
+    textX = margin + logoW + 4;
   } catch {
-    // Fallback to text logo
-    doc.setTextColor(255, 255, 255);
-    doc.setFont("helvetica", "bold");
-    doc.setFontSize(20);
-    doc.text("HouseFada", margin, 20);
+    // no-op, wordmark below still renders
   }
+
+  // Wordmark
+  doc.setTextColor(255, 255, 255);
+  doc.setFont("helvetica", "bold");
+  doc.setFontSize(20);
+  doc.text("HouseFada", textX, 18);
+
+  // Slogan
+  doc.setFont("helvetica", "normal");
+  doc.setFontSize(8.5);
+  doc.setTextColor(200, 200, 200);
+  doc.text("Premium Living Solutions for Modern Nigeria", textX, 24);
 
   // Document title (right side of header)
   doc.setTextColor(231, 0, 70);
   doc.setFont("helvetica", "bold");
   doc.setFontSize(22);
-  doc.text(data.type, pageW - margin, 18, { align: "right" });
+  doc.text(data.type, pageW - margin, 20, { align: "right" });
   doc.setTextColor(255, 255, 255);
   doc.setFont("helvetica", "normal");
   doc.setFontSize(10);
-  doc.text(`#${data.invoice_number}`, pageW - margin, 25, { align: "right" });
+  doc.text(`#${data.invoice_number}`, pageW - margin, 28, { align: "right" });
 
   // ==== Meta block ====
   doc.setTextColor(20, 20, 20);
-  let y = 46;
+  let y = 52;
   doc.setFont("helvetica", "bold");
   doc.setFontSize(11);
   doc.text("Billed To", margin, y);
