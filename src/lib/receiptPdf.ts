@@ -291,6 +291,11 @@ export const generateReceiptPdf = async (data: ReceiptData): Promise<Blob> => {
     ph - 10,
     { align: "center" }
   );
+  doc.setTextColor(20, 110, 200);
+  doc.textWithLink("www.housefada.com", pageW / 2, ph - 5, {
+    align: "center",
+    url: "https://www.housefada.com",
+  });
 
   return doc.output("blob");
 };
