@@ -1,5 +1,5 @@
 import { useEffect, useMemo, useState } from "react";
-import { X, FileText, Receipt, Trash2, Mail, MessageCircle, Download } from "lucide-react";
+import { X, Receipt, Trash2, Mail, MessageCircle, Download, FileText } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Label } from "@/components/ui/label";
 import {
@@ -9,11 +9,25 @@ import {
   SelectTrigger,
   SelectValue,
 } from "@/components/ui/select";
+import {
+  AlertDialog,
+  AlertDialogAction,
+  AlertDialogCancel,
+  AlertDialogContent,
+  AlertDialogDescription,
+  AlertDialogFooter,
+  AlertDialogHeader,
+  AlertDialogTitle,
+} from "@/components/ui/alert-dialog";
 import { supabase } from "@/integrations/supabase/client";
 import { toast } from "@/hooks/use-toast";
 import { TRANSACTION_STATUSES, TransactionStatus, formatNaira } from "@/lib/services";
 import { downloadReceiptPdf, ReceiptData } from "@/lib/receiptPdf";
-import { shareViaEmail, shareViaWhatsApp } from "@/lib/shareReceipt";
+import {
+  buildEmailUrl,
+  buildWhatsappUrl,
+  downloadPdfFor,
+} from "@/lib/shareReceipt";
 
 interface Transaction {
   id: string;
@@ -37,6 +51,13 @@ interface Item {
   unit_price: number;
 }
 
+type ShareIntent = {
+  channel: "email" | "whatsapp";
+  type: "INVOICE" | "RECEIPT";
+  data: ReceiptData;
+  url: string;
+};
+
 export const TransactionDetail = ({
   transactionId,
   onClose,
@@ -51,6 +72,7 @@ export const TransactionDetail = ({
   const [loading, setLoading] = useState(true);
   const [savingStatus, setSavingStatus] = useState(false);
   const [busy, setBusy] = useState<string | null>(null);
+  const [shareIntent, setShareIntent] = useState<ShareIntent | null>(null);
 
   const load = async () => {
     setLoading(true);
@@ -137,14 +159,12 @@ export const TransactionDetail = ({
     const key = `${action}-${type}`;
     setBusy(key);
     try {
-      if (action === "download") await downloadReceiptPdf(data);
-      else if (action === "email") await shareViaEmail(data);
-      else await shareViaWhatsApp(data);
-      if (action !== "download") {
-        toast({
-          title: "PDF downloaded",
-          description: `Attach the ${type.toLowerCase()} PDF in the ${action === "email" ? "email" : "WhatsApp chat"} that just opened.`,
-        });
+      if (action === "download") {
+        await downloadReceiptPdf(data);
+      } else {
+        // Build URL upfront so we can validate (e.g., WhatsApp number) before showing the prompt.
+        const url = action === "email" ? buildEmailUrl(data) : buildWhatsappUrl(data);
+        setShareIntent({ channel: action, type, data, url });
       }
     } catch (e) {
       toast({
@@ -157,15 +177,42 @@ export const TransactionDetail = ({
     }
   };
 
+  const confirmShare = async () => {
+    if (!shareIntent) return;
+    const { url, data, channel, type } = shareIntent;
+    try {
+      await downloadPdfFor(data);
+      if (channel === "email") {
+        window.location.href = url;
+      } else {
+        window.open(url, "_blank", "noopener,noreferrer");
+      }
+      toast({
+        title: "PDF downloaded",
+        description: `Attach the ${type.toLowerCase()} PDF in the ${
+          channel === "email" ? "email draft" : "WhatsApp chat"
+        } that just opened.`,
+      });
+    } catch (e) {
+      toast({
+        title: "Failed",
+        description: e instanceof Error ? e.message : "Could not share.",
+        variant: "destructive",
+      });
+    } finally {
+      setShareIntent(null);
+    }
+  };
+
   return (
     <div className="fixed inset-0 z-50 bg-black/70 backdrop-blur-sm flex items-start sm:items-center justify-center p-0 sm:p-4 overflow-y-auto">
-      <div className="bg-card w-full sm:max-w-2xl sm:rounded-2xl border border-border min-h-screen sm:min-h-0 sm:my-8">
-        <div className="sticky top-0 bg-card border-b border-border px-5 py-4 flex items-center justify-between rounded-t-2xl z-10">
-          <div>
-            <h2 className="text-xl font-display font-bold">{tx?.invoice_number ?? "Loading…"}</h2>
-            <p className="text-xs text-muted-foreground">{tx?.service_type}</p>
+      <div className="bg-card w-full sm:max-w-2xl sm:rounded-2xl border border-border min-h-screen sm:min-h-0 sm:my-8 shadow-2xl">
+        <div className="sticky top-0 bg-gradient-to-r from-card to-card/80 backdrop-blur border-b border-border px-5 py-4 flex items-center justify-between rounded-t-2xl z-10">
+          <div className="min-w-0">
+            <h2 className="text-xl font-display font-bold tracking-tight truncate">{tx?.invoice_number ?? "Loading…"}</h2>
+            <p className="text-xs text-muted-foreground truncate">{tx?.service_type}</p>
           </div>
-          <button onClick={onClose} className="p-2 hover:bg-secondary rounded-lg">
+          <button onClick={onClose} className="p-2 hover:bg-secondary rounded-lg shrink-0" aria-label="Close">
             <X className="w-5 h-5" />
           </button>
         </div>
@@ -175,19 +222,19 @@ export const TransactionDetail = ({
         ) : (
           <div className="p-5 space-y-6">
             {/* Client */}
-            <section className="grid sm:grid-cols-2 gap-3 text-sm">
+            <section className="grid sm:grid-cols-2 gap-3 text-sm bg-secondary/30 border border-border rounded-xl p-4">
               <div>
-                <p className="text-muted-foreground text-xs uppercase tracking-wider">Client</p>
-                <p className="font-semibold">{tx.client_name}</p>
+                <p className="text-muted-foreground text-[10px] uppercase tracking-[0.15em]">Client</p>
+                <p className="font-semibold mt-0.5">{tx.client_name}</p>
                 <p className="text-muted-foreground">{tx.client_email}</p>
                 <p className="text-muted-foreground">WhatsApp: {tx.client_whatsapp}</p>
               </div>
               <div>
-                <p className="text-muted-foreground text-xs uppercase tracking-wider">Created</p>
-                <p>{new Date(tx.created_at).toLocaleString("en-NG")}</p>
+                <p className="text-muted-foreground text-[10px] uppercase tracking-[0.15em]">Created</p>
+                <p className="mt-0.5">{new Date(tx.created_at).toLocaleString("en-NG")}</p>
                 {tx.paid_at && (
                   <>
-                    <p className="text-muted-foreground text-xs uppercase tracking-wider mt-2">Paid</p>
+                    <p className="text-muted-foreground text-[10px] uppercase tracking-[0.15em] mt-2">Paid</p>
                     <p className="text-emerald-400">{new Date(tx.paid_at).toLocaleString("en-NG")}</p>
                   </>
                 )}
@@ -253,7 +300,9 @@ export const TransactionDetail = ({
 
             {/* Invoice actions */}
             <section className="space-y-2">
-              <p className="text-xs font-semibold text-muted-foreground uppercase tracking-wider">Invoice</p>
+              <p className="text-xs font-semibold text-muted-foreground uppercase tracking-[0.15em] flex items-center gap-2">
+                <FileText className="w-3.5 h-3.5" /> Invoice
+              </p>
               <div className="grid grid-cols-1 sm:grid-cols-3 gap-2">
                 <Button variant="secondary" onClick={() => handle("download", "INVOICE")} disabled={busy === "download-INVOICE"}>
                   <Download className="w-4 h-4 mr-2" /> Download
@@ -269,12 +318,12 @@ export const TransactionDetail = ({
 
             {/* Receipt actions */}
             <section className="space-y-2">
-              <p className="text-xs font-semibold text-muted-foreground uppercase tracking-wider">
-                Receipt {!isPaid && <span className="text-destructive normal-case">(mark Paid first)</span>}
+              <p className="text-xs font-semibold text-muted-foreground uppercase tracking-[0.15em] flex items-center gap-2">
+                <Receipt className="w-3.5 h-3.5" /> Receipt {!isPaid && <span className="text-destructive normal-case tracking-normal">(mark Paid first)</span>}
               </p>
               <div className="grid grid-cols-1 sm:grid-cols-3 gap-2">
                 <Button onClick={() => handle("download", "RECEIPT")} disabled={!isPaid || busy === "download-RECEIPT"}>
-                  <Receipt className="w-4 h-4 mr-2" /> Download
+                  <Download className="w-4 h-4 mr-2" /> Download
                 </Button>
                 <Button onClick={() => handle("email", "RECEIPT")} disabled={!isPaid || busy === "email-RECEIPT"}>
                   <Mail className="w-4 h-4 mr-2" /> Email
@@ -294,6 +343,28 @@ export const TransactionDetail = ({
           </div>
         )}
       </div>
+
+      <AlertDialog open={!!shareIntent} onOpenChange={(o) => !o && setShareIntent(null)}>
+        <AlertDialogContent>
+          <AlertDialogHeader>
+            <AlertDialogTitle>Attach the PDF manually</AlertDialogTitle>
+            <AlertDialogDescription>
+              Browsers don't allow files to be auto-attached to{" "}
+              {shareIntent?.channel === "email" ? "email" : "WhatsApp"} from a web page.
+              <br /><br />
+              When you continue, the {shareIntent?.type.toLowerCase()} PDF will download to your device,
+              and your {shareIntent?.channel === "email" ? "email app" : "WhatsApp"} will open with a
+              prefilled message. Please attach the downloaded PDF before sending.
+            </AlertDialogDescription>
+          </AlertDialogHeader>
+          <AlertDialogFooter>
+            <AlertDialogCancel>Cancel</AlertDialogCancel>
+            <AlertDialogAction onClick={confirmShare}>
+              Download &amp; open {shareIntent?.channel === "email" ? "Email" : "WhatsApp"}
+            </AlertDialogAction>
+          </AlertDialogFooter>
+        </AlertDialogContent>
+      </AlertDialog>
     </div>
   );
 };
