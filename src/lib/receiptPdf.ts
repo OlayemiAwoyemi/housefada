@@ -291,7 +291,9 @@ export const generateReceiptPdf = async (data: ReceiptData): Promise<Blob> => {
     ph - 10,
     { align: "center" }
   );
-  doc.setTextColor(20, 110, 200);
+  // Brand red (matches website accent: hsl(350 100% 55%) ≈ rgb(255, 26, 71))
+  doc.setTextColor(255, 26, 71);
+  doc.setFont("helvetica", "bold");
   doc.textWithLink("www.housefada.com", pageW / 2, ph - 5, {
     align: "center",
     url: "https://www.housefada.com",
