@@ -211,39 +211,63 @@ export const generateReceiptPdf = async (data: ReceiptData): Promise<Blob> => {
     finalY += boxH;
   }
 
-  // ==== Other services we offer ====
-  finalY += 8;
-  // Add a new page if not enough space
+  // ==== Services list (checkbox style) ====
+  finalY += 10;
   const ph = doc.internal.pageSize.getHeight();
-  if (finalY > ph - 50) {
+  if (finalY > ph - 60) {
     doc.addPage();
     finalY = 20;
   }
   doc.setFont("helvetica", "bold");
-  doc.setFontSize(10);
+  doc.setFontSize(11);
   doc.setTextColor(15, 23, 42);
-  doc.text("Other Services from HouseFada Resources", margin, finalY);
-  doc.setFont("helvetica", "normal");
-  doc.setFontSize(9);
-  doc.setTextColor(71, 85, 105);
-  const others = SERVICE_TYPES.filter((s) => s !== "Other");
-  // Two columns
-  const half = Math.ceil(others.length / 2);
+  doc.text("HouseFada Service Catalogue", margin, finalY);
+  finalY += 5;
+
+  const allServices = SERVICE_TYPES.filter((s) => s !== "Other");
+  const activeServices = new Set<string>();
+  data.items.forEach((it) => it.service_type && activeServices.add(it.service_type));
+  if (activeServices.size === 0 && data.service_type) {
+    data.service_type.split(",").forEach((s) => activeServices.add(s.trim()));
+  }
+
   const colWidth = (pageW - margin * 2) / 2;
-  others.forEach((s, i) => {
+  const rowH = 7;
+  const boxSize = 3.6;
+  const half = Math.ceil(allServices.length / 2);
+
+  allServices.forEach((s, i) => {
     const col = i < half ? 0 : 1;
     const row = i < half ? i : i - half;
-    const isCurrent = s === data.service_type || data.items.some((it) => it.service_type === s);
+    const x = margin + col * colWidth;
+    const yy = finalY + 4 + row * rowH;
+    const isCurrent = activeServices.has(s);
+
+    // Square box
     if (isCurrent) {
+      doc.setFillColor(231, 0, 70); // accent fill
+      doc.setDrawColor(231, 0, 70);
+      doc.roundedRect(x, yy - boxSize + 0.4, boxSize, boxSize, 0.6, 0.6, "FD");
+      // Inner check tick
+      doc.setDrawColor(255, 255, 255);
+      doc.setLineWidth(0.5);
+      doc.line(x + 0.7, yy - 1.2, x + 1.5, yy - 0.4);
+      doc.line(x + 1.5, yy - 0.4, x + 3.0, yy - 2.6);
+      doc.setLineWidth(0.2);
+      // Active label
       doc.setFont("helvetica", "bold");
       doc.setTextColor(231, 0, 70);
-      doc.text(`> ${s}  (current)`, margin + col * colWidth, finalY + 6 + row * 5);
-      doc.setFont("helvetica", "normal");
-      doc.setTextColor(71, 85, 105);
     } else {
-      doc.text(`• ${s}`, margin + col * colWidth, finalY + 6 + row * 5);
+      doc.setDrawColor(180, 188, 200);
+      doc.setFillColor(255, 255, 255);
+      doc.roundedRect(x, yy - boxSize + 0.4, boxSize, boxSize, 0.6, 0.6, "FD");
+      doc.setFont("helvetica", "normal");
+      doc.setTextColor(100, 116, 139);
     }
+    doc.setFontSize(9);
+    doc.text(s, x + boxSize + 2.2, yy);
   });
+  finalY += 4 + half * rowH;
 
   // ==== Footer ====
   const footerY = ph - 22;
