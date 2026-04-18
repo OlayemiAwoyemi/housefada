@@ -102,7 +102,7 @@ export type Database = {
       [_ in never]: never
     }
     Functions: {
-      [_ in never]: never
+      next_housefada_invoice_number: { Args: never; Returns: string }
     }
     Enums: {
       transaction_status:
