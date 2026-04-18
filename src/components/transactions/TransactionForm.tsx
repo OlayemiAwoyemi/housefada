@@ -11,7 +11,7 @@ import {
   SelectTrigger,
   SelectValue,
 } from "@/components/ui/select";
-import { SERVICE_TYPES, formatNaira, generateInvoiceNumber } from "@/lib/services";
+import { SERVICE_TYPES, formatNaira, generateInvoiceNumber, toTitleCase, toSentenceCase } from "@/lib/services";
 import { supabase } from "@/integrations/supabase/client";
 import { toast } from "@/hooks/use-toast";
 
@@ -69,11 +69,11 @@ export const TransactionForm = ({ onClose, onCreated }: { onClose: () => void; o
       .from("transactions")
       .insert({
         invoice_number,
-        client_name: clientName.trim(),
-        client_email: clientEmail.trim(),
+        client_name: toTitleCase(clientName),
+        client_email: clientEmail.trim().toLowerCase(),
         client_whatsapp: clientWhatsapp.trim(),
         service_type: primaryService,
-        notes: notes.trim() || null,
+        notes: notes.trim() ? toSentenceCase(notes) : null,
         total_amount: total,
         status: "pending",
       })
@@ -90,7 +90,7 @@ export const TransactionForm = ({ onClose, onCreated }: { onClose: () => void; o
       cleanItems.map((it) => ({
         transaction_id: tx.id,
         service_type: it.service_type,
-        item_name: it.item_name.trim(),
+        item_name: toTitleCase(it.item_name),
         quantity: it.quantity,
         unit_price: it.unit_price,
       }))

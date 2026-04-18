@@ -17,6 +17,7 @@ import {
   TRANSACTION_STATUSES,
   TransactionStatus,
   formatNaira,
+  toTitleCase,
 } from "@/lib/services";
 
 interface Row {
@@ -185,7 +186,7 @@ const Transactions = () => {
                             {meta.label}
                           </span>
                         </div>
-                        <p className="text-sm mt-1 truncate">{r.client_name} · <span className="text-muted-foreground">{r.service_type}</span></p>
+                        <p className="text-sm mt-1 truncate">{toTitleCase(r.client_name)} · <span className="text-muted-foreground">{r.service_type}</span></p>
                         <p className="text-xs text-muted-foreground">{new Date(r.created_at).toLocaleDateString("en-NG", { day: "2-digit", month: "short", year: "numeric" })}</p>
                       </div>
                       <div className="text-right">

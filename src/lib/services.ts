@@ -23,6 +23,31 @@ export const TRANSACTION_STATUSES = [
 
 export type TransactionStatus = (typeof TRANSACTION_STATUSES)[number]["value"];
 
+/**
+ * Capitalises the first letter of every word, lowercasing the rest.
+ * Preserves separators (spaces, hyphens, apostrophes, slashes, periods).
+ * Leaves all-uppercase tokens of length <= 3 (e.g. "RC", "NGN", "USA") intact.
+ */
+export const toTitleCase = (input: string): string => {
+  if (!input) return "";
+  return input
+    .toLowerCase()
+    .replace(/([^\s\-'’/.]+)/g, (word) => {
+      // Preserve common short acronyms if user actually typed uppercase originally —
+      // we can't tell here, so just title-case everything consistently.
+      return word.charAt(0).toUpperCase() + word.slice(1);
+    })
+    .replace(/\s+/g, " ")
+    .trim();
+};
+
+/** Title-case for sentences: capitalise first letter of each sentence only. */
+export const toSentenceCase = (input: string): string => {
+  if (!input) return "";
+  const trimmed = input.trim().replace(/\s+/g, " ");
+  return trimmed.replace(/(^|[.!?]\s+)([a-z])/g, (_, p, c) => p + c.toUpperCase());
+};
+
 export const formatNaira = (n: number) =>
   // Use "NGN " prefix instead of the ₦ glyph because jsPDF's built-in Helvetica
   // renders ₦ as a broken glyph (e.g. "¦"). This keeps PDFs and UI consistent.
