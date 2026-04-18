@@ -62,7 +62,7 @@ export const TransactionForm = ({ onClose, onCreated }: { onClose: () => void; o
     }
 
     setSubmitting(true);
-    const invoice_number = generateInvoiceNumber();
+    const invoice_number = await generateInvoiceNumber();
     const primaryService = selectedServices.join(", ");
 
     const { data: tx, error: txErr } = await supabase

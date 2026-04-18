@@ -29,11 +29,20 @@ export const formatNaira = (n: number) =>
   "NGN " +
   new Intl.NumberFormat("en-NG", { minimumFractionDigits: 2, maximumFractionDigits: 2 }).format(n || 0);
 
-export const generateInvoiceNumber = () => {
-  const d = new Date();
-  const ymd = `${d.getFullYear()}${String(d.getMonth() + 1).padStart(2, "0")}${String(d.getDate()).padStart(2, "0")}`;
-  const rand = Math.floor(1000 + Math.random() * 9000);
-  return `INV-${ymd}-${rand}`;
+import { supabase } from "@/integrations/supabase/client";
+
+/**
+ * Pulls the next sequential HouseFada invoice number from the database.
+ * Format: HouseFada-0001, HouseFada-0002, ...
+ * Falls back to a timestamp-based number only if the RPC fails (offline / error).
+ */
+export const generateInvoiceNumber = async (): Promise<string> => {
+  const { data, error } = await supabase.rpc("next_housefada_invoice_number");
+  if (error || !data) {
+    const ts = Date.now().toString().slice(-4);
+    return `HouseFada-${ts}`;
+  }
+  return data as string;
 };
 
 export const COMPANY = {
