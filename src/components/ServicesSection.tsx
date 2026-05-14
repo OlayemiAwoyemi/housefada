@@ -61,7 +61,7 @@ const services = [
 
 const ServicesSection = () => {
   return (
-    <section id="services" className="py-20 md:py-32 bg-surface/10 relative border-t border-white/5">
+    <section id="services" className="py-20 md:py-32 bg-white relative border-t border-gray-100">
       <div className="max-w-7xl mx-auto px-6 lg:px-10">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
@@ -80,8 +80,8 @@ const ServicesSection = () => {
           transition={{ duration: 0.8, delay: 0.1 }}
           className="mb-12 md:mb-16 max-w-2xl"
         >
-          <h2 className="text-3xl md:text-5xl font-extrabold tracking-tight leading-tight text-white">
-            One Brand. Every <span className="text-accent text-glow">Solution.</span>
+          <h2 className="text-3xl md:text-5xl font-extrabold tracking-tight leading-tight text-foreground">
+            One Brand. Every <span className="text-accent">Solution.</span>
           </h2>
           <p className="mt-3 text-muted-foreground text-base leading-relaxed">
             Since 2017, HouseFada has empowered modern living by delivering premium services across nine verticals. We handle the complexities of everyday life so you can focus on what truly matters — your family, your career, and your ambitions.
@@ -102,14 +102,14 @@ const ServicesSection = () => {
                 onClick={() => window.scrollTo(0, 0)}
                 className="service-card block h-full group"
               >
-                <service.icon className="w-8 h-8 text-accent mb-5 group-hover:text-white transition-colors" />
-                <h3 className="text-lg font-bold tracking-tight mb-2 text-white group-hover:text-accent transition-colors">
+                <service.icon className="w-8 h-8 text-accent mb-5 transition-colors" />
+                <h3 className="text-lg font-bold tracking-tight mb-2 text-foreground group-hover:text-accent transition-colors">
                   {service.name}
                 </h3>
                 <p className="text-muted-foreground text-sm leading-relaxed mb-5">
                   {service.description}
                 </p>
-                <div className="mt-auto pt-4 border-t border-white/5 inline-flex items-center gap-2 text-sm font-medium text-accent group-hover:gap-3 transition-all">
+                <div className="mt-auto pt-4 border-t border-gray-100 inline-flex items-center gap-2 text-sm font-medium text-accent group-hover:gap-3 transition-all">
                   Read more <ArrowRight className="w-4 h-4" />
                 </div>
               </Link>

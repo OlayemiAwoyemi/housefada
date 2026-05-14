@@ -25,7 +25,7 @@ const Navbar = () => {
   };
 
   return (
-    <nav className="fixed top-0 left-0 right-0 z-50 bg-background/50 backdrop-blur-md border-b border-white/5">
+    <nav className="fixed top-0 left-0 right-0 z-50 bg-white/80 backdrop-blur-md border-b border-gray-100">
       <div className="max-w-7xl mx-auto px-6 lg:px-10 flex items-center justify-between h-16">
         <Link to="/" className="shrink-0">
           <img src={logo} alt="HouseFada" className="h-8" />
@@ -36,7 +36,7 @@ const Navbar = () => {
             <button
               key={link.label}
               onClick={() => scrollTo(link.href)}
-              className="text-sm font-medium text-muted-foreground hover:text-white transition-colors"
+              className="text-sm font-medium text-muted-foreground hover:text-foreground transition-colors"
             >
               {link.label}
             </button>
@@ -47,7 +47,7 @@ const Navbar = () => {
           <a
             href="#services"
             onClick={(e) => { e.preventDefault(); scrollTo("#services"); }}
-            className="text-sm font-medium border border-white/10 text-white px-4 py-2 rounded-lg hover:bg-white/5 transition-all"
+            className="text-sm font-medium border border-gray-200 text-foreground px-4 py-2 rounded-lg hover:bg-gray-50 transition-all"
           >
             Explore Services
           </a>
@@ -55,7 +55,7 @@ const Navbar = () => {
             href="https://wa.me/2348160169189?text=Hello%20HouseFada%2C%20I%27d%20like%20to%20learn%20more%20about%20your%20services!"
             target="_blank"
             rel="noopener noreferrer"
-            className="text-sm font-medium bg-accent text-accent-foreground px-4 py-2 rounded-lg hover:bg-accent/90 transition-all shadow-[0_0_15px_rgba(255,40,80,0.3)] hover:shadow-[0_0_25px_rgba(255,40,80,0.5)]"
+            className="text-sm font-medium bg-accent text-accent-foreground px-4 py-2 rounded-lg hover:bg-accent/90 transition-all shadow-sm"
           >
             Talk to Us
           </a>
@@ -76,14 +76,14 @@ const Navbar = () => {
             initial={{ opacity: 0, height: 0 }}
             animate={{ opacity: 1, height: "auto" }}
             exit={{ opacity: 0, height: 0 }}
-            className="md:hidden bg-background border-b border-border overflow-hidden"
+            className="md:hidden bg-white border-b border-gray-100 overflow-hidden"
           >
             <div className="px-6 py-6 space-y-4">
               {links.map((link) => (
                 <button
                   key={link.label}
                   onClick={() => scrollTo(link.href)}
-                  className="block text-base font-medium text-muted-foreground hover:text-white transition-colors"
+                  className="block text-base font-medium text-muted-foreground hover:text-foreground transition-colors"
                 >
                   {link.label}
                 </button>

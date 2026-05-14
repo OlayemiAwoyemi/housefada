@@ -3,7 +3,7 @@ import logoIcon from "@/assets/HouseFada_Icon.png";
 
 const AboutSection = () => {
   return (
-    <section className="py-20 md:py-32 bg-background relative border-t border-white/5">
+    <section className="py-20 md:py-32 bg-gray-50 relative border-t border-gray-100">
       <div className="max-w-7xl mx-auto px-6 lg:px-10">
         <div className="grid lg:grid-cols-2 gap-12 lg:gap-20 items-start">
           <motion.div
@@ -13,8 +13,8 @@ const AboutSection = () => {
             transition={{ duration: 0.8 }}
             className="relative"
           >
-            <div className="aspect-square bg-surface/30 border border-white/10 rounded-2xl flex items-center justify-center p-8 backdrop-blur-sm">
-              <img src={logoIcon} alt="HouseFada" className="w-44 h-44 object-contain filter drop-shadow-[0_0_15px_rgba(255,255,255,0.1)]" />
+            <div className="aspect-square bg-white border border-gray-200 rounded-2xl flex items-center justify-center p-8 shadow-sm">
+              <img src={logoIcon} alt="HouseFada" className="w-44 h-44 object-contain" />
             </div>
             <div className="absolute -bottom-4 -right-4 bg-accent text-accent-foreground px-5 py-2.5 rounded-lg shadow-2xl">
               <div className="text-xs font-bold uppercase tracking-widest">Est. 2017</div>
@@ -29,8 +29,8 @@ const AboutSection = () => {
             className="flex flex-col justify-center"
           >
             <span className="text-sm font-semibold text-accent uppercase tracking-widest">Our Mission</span>
-            <h2 className="text-3xl md:text-4xl font-extrabold tracking-tight mt-3 leading-tight text-white">
-              The Future is <span className="text-accent text-glow">Effortless Living</span>
+            <h2 className="text-3xl md:text-4xl font-extrabold tracking-tight mt-3 leading-tight text-foreground">
+              The Future is <span className="text-accent">Effortless Living</span>
             </h2>
             <p className="mt-5 text-muted-foreground text-base leading-relaxed">
               Since 2017, HouseFada has been on a mission to redefine convenience for modern Nigeria. We believe that premium living shouldn't be reserved for the few — it should be accessible, seamless, and woven into the fabric of everyday life. That conviction drives everything we build.
@@ -41,7 +41,7 @@ const AboutSection = () => {
             <p className="mt-3 text-muted-foreground text-base leading-relaxed">
               Headquartered in Redemption City, Mowe, Ogun State, we serve clients across Nigeria with a growing network of trained professionals, vetted suppliers, and technology-driven operations. Our goal is simple: handle the details of modern life so you can focus on what truly matters.
             </p>
-            <div className="mt-8 pt-6 border-t border-white/10 flex flex-wrap items-center gap-6">
+            <div className="mt-8 pt-6 border-t border-gray-200 flex flex-wrap items-center gap-6">
               <span className="text-sm text-muted-foreground">RC 9363567</span>
               <span className="text-sm text-muted-foreground">Redemption City, Mowe, Ogun State, Nigeria</span>
               <span className="text-sm text-muted-foreground">Est. 2017</span>

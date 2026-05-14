@@ -35,14 +35,14 @@ const ServicePageLayout = ({
   return (
     <div className="bg-background text-foreground min-h-screen">
       {/* Sticky top bar */}
-      <nav className="fixed top-0 left-0 right-0 z-50 bg-background/50 backdrop-blur-md border-b border-white/5">
+      <nav className="fixed top-0 left-0 right-0 z-50 bg-white/80 backdrop-blur-md border-b border-gray-100">
         <div className="max-w-7xl mx-auto px-6 lg:px-10 flex items-center justify-between h-16">
           <Link to="/" className="shrink-0">
             <img src={logo} alt="HouseFada" className="h-8" />
           </Link>
           <Link
             to="/"
-            className="inline-flex items-center gap-2 text-sm font-medium text-muted-foreground hover:text-white transition-colors"
+            className="inline-flex items-center gap-2 text-sm font-medium text-muted-foreground hover:text-foreground transition-colors"
           >
             <ArrowLeft className="w-4 h-4" />
             Back to Home
@@ -61,8 +61,8 @@ const ServicePageLayout = ({
           >
             <div>
               <span className="text-sm font-semibold text-accent uppercase tracking-widest">{tag}</span>
-              <h1 className="text-4xl md:text-5xl lg:text-6xl font-extrabold tracking-tighter mt-3 leading-[1.05]">
-                {title} <span className="text-accent text-glow">{accent}</span>
+              <h1 className="text-4xl md:text-5xl lg:text-6xl font-extrabold tracking-tighter mt-3 leading-[1.05] text-foreground">
+                {title} <span className="text-accent">{accent}</span>
               </h1>
               <p className="mt-5 text-muted-foreground text-base max-w-md leading-relaxed">
                 {description}
@@ -72,7 +72,7 @@ const ServicePageLayout = ({
                   href={`https://wa.me/2348160169189?text=${encodeURIComponent(whatsappMessage)}`}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="inline-flex items-center gap-2 bg-accent text-accent-foreground text-sm font-semibold px-6 py-3.5 rounded-lg hover:bg-accent/90 transition-all shadow-[0_0_20px_rgba(255,40,80,0.4)] hover:shadow-[0_0_30px_rgba(255,40,80,0.6)] group"
+                  className="inline-flex items-center gap-2 bg-accent text-accent-foreground text-sm font-semibold px-6 py-3.5 rounded-lg hover:bg-accent/90 transition-all shadow-sm group"
                 >
                   Get Started
                   <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
@@ -81,8 +81,8 @@ const ServicePageLayout = ({
             </div>
 
             <div className="hidden lg:flex items-center justify-center">
-              <div className="w-56 h-56 bg-surface/30 border border-white/10 rounded-2xl flex items-center justify-center backdrop-blur-sm relative overflow-hidden">
-                <div className="absolute inset-0 bg-gradient-to-br from-accent/10 to-transparent pointer-events-none" />
+              <div className="w-56 h-56 bg-white border border-gray-200 rounded-2xl flex items-center justify-center shadow-sm relative overflow-hidden">
+                <div className="absolute inset-0 bg-gradient-to-br from-accent/5 to-transparent pointer-events-none" />
                 <Icon className="w-20 h-20 text-accent/50 relative z-10" />
               </div>
             </div>
@@ -91,7 +91,7 @@ const ServicePageLayout = ({
       </section>
 
       {/* Overview */}
-      <section className="py-16 md:py-24 bg-surface/10 border-t border-white/5">
+      <section className="py-16 md:py-24 bg-gray-50 border-t border-gray-100">
         <div className="max-w-7xl mx-auto px-6 lg:px-10">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
@@ -121,7 +121,7 @@ const ServicePageLayout = ({
       </section>
 
       {/* Features grid */}
-      <section className="py-16 md:py-24 bg-background border-t border-white/5 subtle-grid">
+      <section className="py-16 md:py-24 bg-white border-t border-gray-100">
         <div className="max-w-7xl mx-auto px-6 lg:px-10">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
@@ -131,8 +131,8 @@ const ServicePageLayout = ({
             className="mb-12"
           >
             <span className="text-sm font-semibold text-accent uppercase tracking-widest">What We Offer</span>
-            <h2 className="text-3xl md:text-4xl font-extrabold tracking-tight mt-3 text-white">
-              Our <span className="text-accent text-glow">Capabilities</span>
+            <h2 className="text-3xl md:text-4xl font-extrabold tracking-tight mt-3 text-foreground">
+              Our <span className="text-accent">Capabilities</span>
             </h2>
           </motion.div>
 
@@ -146,8 +146,8 @@ const ServicePageLayout = ({
                 transition={{ duration: 0.5, delay: index * 0.08 }}
                 className="service-card group"
               >
-                <div className="text-xs font-bold text-accent mb-3 tracking-wider group-hover:text-white transition-colors">0{index + 1}</div>
-                <h3 className="text-base font-bold tracking-tight mb-2">{feature.title}</h3>
+                <div className="text-xs font-bold text-accent mb-3 tracking-wider group-hover:text-foreground transition-colors">0{index + 1}</div>
+                <h3 className="text-base font-bold tracking-tight mb-2 text-foreground">{feature.title}</h3>
                 <p className="text-muted-foreground text-sm leading-relaxed">{feature.description}</p>
               </motion.div>
             ))}
@@ -156,7 +156,7 @@ const ServicePageLayout = ({
       </section>
 
       {/* CTA */}
-      <section className="py-16 md:py-24 bg-surface/20 border-t border-white/5">
+      <section className="py-16 md:py-24 bg-gray-50 border-t border-gray-100">
         <div className="max-w-7xl mx-auto px-6 lg:px-10 text-center">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
@@ -164,8 +164,8 @@ const ServicePageLayout = ({
             viewport={{ once: true }}
             transition={{ duration: 0.8 }}
           >
-            <h2 className="text-3xl md:text-4xl font-extrabold tracking-tight mb-5 text-white">
-              Ready to Get <span className="text-accent text-glow">Started?</span>
+            <h2 className="text-3xl md:text-4xl font-extrabold tracking-tight mb-5 text-foreground">
+              Ready to Get <span className="text-accent">Started?</span>
             </h2>
             <p className="text-muted-foreground text-base max-w-md mx-auto mb-8">
               Reach out to us on WhatsApp and let's discuss how HouseFada can simplify your life. We've been doing this since 2017 — you're in good hands.
@@ -175,14 +175,14 @@ const ServicePageLayout = ({
                 href={`https://wa.me/2348160169189?text=${encodeURIComponent(whatsappMessage)}`}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="inline-flex items-center gap-2 bg-accent text-accent-foreground text-sm font-semibold px-6 py-3.5 rounded-lg hover:bg-accent/90 transition-all shadow-[0_0_20px_rgba(255,40,80,0.4)] hover:shadow-[0_0_30px_rgba(255,40,80,0.6)] group"
+                className="inline-flex items-center gap-2 bg-accent text-accent-foreground text-sm font-semibold px-6 py-3.5 rounded-lg hover:bg-accent/90 transition-all shadow-sm group"
               >
                 Chat on WhatsApp
                 <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
               </a>
               <Link
                 to="/"
-                className="inline-flex items-center gap-2 border border-white/10 text-white text-sm font-semibold px-6 py-3.5 rounded-lg hover:bg-white/5 transition-all"
+                className="inline-flex items-center gap-2 border border-gray-200 text-foreground text-sm font-semibold px-6 py-3.5 rounded-lg hover:bg-gray-100 transition-all"
               >
                 <ArrowLeft className="w-4 h-4" />
                 Back to Home
@@ -193,7 +193,7 @@ const ServicePageLayout = ({
       </section>
 
       {/* Footer */}
-      <footer className="bg-background border-t border-white/5 py-8">
+      <footer className="bg-white border-t border-gray-100 py-8">
         <div className="max-w-7xl mx-auto px-6 lg:px-10 flex flex-col md:flex-row items-center justify-between gap-4">
           <Link to="/" className="inline-block">
             <img src={footerLogo} alt="HouseFada" className="h-7" />

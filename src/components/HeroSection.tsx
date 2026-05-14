@@ -16,7 +16,7 @@ const services = [
 
 const HeroSection = () => {
   return (
-    <section className="min-h-screen flex items-center pt-16 subtle-grid">
+    <section className="min-h-screen flex items-center pt-16 subtle-grid bg-white">
       <div className="max-w-7xl mx-auto px-6 lg:px-10 w-full">
         <div className="grid lg:grid-cols-2 gap-12 lg:gap-20 items-center">
           <motion.div
@@ -24,12 +24,12 @@ const HeroSection = () => {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8 }}
           >
-            <h1 className="text-5xl md:text-6xl lg:text-7xl font-extrabold tracking-tighter leading-[1.05]">
+            <h1 className="text-5xl md:text-6xl lg:text-7xl font-extrabold tracking-tighter leading-[1.05] text-foreground">
               Premium living
               <br />
               solutions built for
               <br />
-              <span className="text-accent text-glow">modern Nigeria</span>
+              <span className="text-accent">modern Nigeria</span>
             </h1>
 
             <p className="mt-5 text-muted-foreground text-base max-w-md leading-relaxed">
@@ -39,7 +39,7 @@ const HeroSection = () => {
             <div className="mt-10 flex flex-wrap gap-4">
               <a
                 href="#services"
-                className="inline-flex items-center gap-2 bg-accent text-accent-foreground text-sm font-semibold px-6 py-3.5 rounded-lg hover:bg-accent/90 transition-all shadow-[0_0_20px_rgba(255,40,80,0.4)] hover:shadow-[0_0_30px_rgba(255,40,80,0.6)] group"
+                className="inline-flex items-center gap-2 bg-accent text-accent-foreground text-sm font-semibold px-6 py-3.5 rounded-lg hover:bg-accent/90 transition-all shadow-sm group"
               >
                 Explore Services
                 <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
@@ -48,7 +48,7 @@ const HeroSection = () => {
                 href="https://wa.me/2348160169189?text=Hello%20HouseFada%2C%20I%27d%20like%20to%20learn%20more%20about%20your%20services!"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="inline-flex items-center gap-2 border border-white/10 text-white text-sm font-semibold px-6 py-3.5 rounded-lg hover:bg-white/5 transition-all group"
+                className="inline-flex items-center gap-2 border border-gray-200 text-foreground text-sm font-semibold px-6 py-3.5 rounded-lg hover:bg-gray-50 transition-all group shadow-sm"
               >
                 Talk to Our Team
                 <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
@@ -75,8 +75,8 @@ const HeroSection = () => {
                     onClick={() => window.scrollTo(0, 0)}
                     className="service-card flex flex-col items-center justify-center gap-3 hover:scale-[1.02] cursor-pointer block group"
                   >
-                    <item.icon className="w-6 h-6 text-accent group-hover:text-white transition-colors" />
-                    <span className="text-[12px] font-medium text-muted-foreground text-center group-hover:text-white transition-colors">
+                    <item.icon className="w-6 h-6 text-accent transition-colors" />
+                    <span className="text-[12px] font-medium text-muted-foreground text-center group-hover:text-foreground transition-colors">
                       {item.label}
                     </span>
                   </Link>
@@ -88,9 +88,9 @@ const HeroSection = () => {
               initial={{ opacity: 0, x: 20 }}
               animate={{ opacity: 1, x: 0 }}
               transition={{ duration: 0.6, delay: 1.2 }}
-              className="absolute -top-6 -right-6 bg-surface border border-white/10 px-5 py-3 rounded-lg shadow-2xl backdrop-blur-md z-10"
+              className="absolute -top-6 -right-6 bg-white border border-gray-200 px-5 py-3 rounded-lg shadow-lg z-10"
             >
-              <div className="text-xs font-bold text-white">Since 2017</div>
+              <div className="text-xs font-bold text-foreground">Since 2017</div>
               <div className="text-[12px] text-muted-foreground mt-0.5">9 Services</div>
             </motion.div>
           </motion.div>
