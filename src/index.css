@@ -134,24 +134,39 @@
   }
 
   .service-card {
-    @apply bg-surface border border-border p-6 rounded-xl transition-all duration-300;
+    @apply bg-surface/40 border border-white/5 p-6 rounded-xl transition-all duration-300 backdrop-blur-sm relative overflow-hidden;
+  }
+
+  .service-card::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: radial-gradient(circle at center, hsl(var(--accent)/0.1) 0%, transparent 70%);
+    opacity: 0;
+    transition: opacity 0.3s ease;
+    pointer-events: none;
   }
 
   .service-card:hover {
-    @apply bg-surface-hover border-foreground/20;
+    @apply bg-surface border-white/20;
+  }
+
+  .service-card:hover::after {
+    opacity: 1;
   }
 
   .section-light {
-    background: hsl(var(--surface-light));
-    color: hsl(var(--foreground-on-light));
+    background: hsl(var(--background));
+    color: hsl(var(--foreground));
     position: relative;
+    border-top: 1px solid hsl(var(--border));
   }
 
   .section-light::before {
     content: '';
     position: absolute;
     inset: 0;
-    background: radial-gradient(ellipse 80% 60% at 50% 0%, hsl(var(--accent) / 0.03), transparent);
+    background: radial-gradient(ellipse 80% 60% at 50% 0%, hsl(var(--accent) / 0.05), transparent);
     pointer-events: none;
   }
 
@@ -159,20 +174,24 @@
     background: hsl(var(--card));
     color: hsl(var(--foreground));
     position: relative;
+    border-top: 1px solid hsl(var(--border));
+    border-bottom: 1px solid hsl(var(--border));
   }
 
   .section-grey::before {
     content: '';
     position: absolute;
     inset: 0;
-    background: radial-gradient(ellipse 80% 60% at 50% 100%, hsl(var(--accent) / 0.04), transparent);
+    background: radial-gradient(ellipse 80% 60% at 50% 100%, hsl(var(--accent) / 0.05), transparent);
     pointer-events: none;
   }
 
   .subtle-grid {
     background-image: 
-      linear-gradient(hsl(var(--foreground) / 0.03) 1px, transparent 1px),
-      linear-gradient(90deg, hsl(var(--foreground) / 0.03) 1px, transparent 1px);
-    background-size: 60px 60px;
+      linear-gradient(hsl(var(--foreground) / 0.04) 1px, transparent 1px),
+      linear-gradient(90deg, hsl(var(--foreground) / 0.04) 1px, transparent 1px);
+    background-size: 40px 40px;
+    mask-image: radial-gradient(circle at center, black 40%, transparent 100%);
+    -webkit-mask-image: radial-gradient(circle at center, black 40%, transparent 100%);
   }
 }

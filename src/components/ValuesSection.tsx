@@ -26,7 +26,7 @@ const values = [
 
 const ValuesSection = () => {
   return (
-    <section className="py-20 md:py-32 section-light">
+    <section className="py-20 md:py-32 bg-background relative border-t border-white/5 subtle-grid">
       <div className="max-w-7xl mx-auto px-6 lg:px-10">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
@@ -45,10 +45,10 @@ const ValuesSection = () => {
           transition={{ duration: 0.8, delay: 0.1 }}
           className="mb-12 md:mb-16"
         >
-          <h2 className="text-2xl md:text-3xl font-bold tracking-tight font-display text-foreground-on-light">
-            Built on Trust Since <span className="text-accent">2017</span>
+          <h2 className="text-3xl md:text-4xl font-extrabold tracking-tight text-white">
+            Built on Trust Since <span className="text-accent text-glow">2017</span>
           </h2>
-          <p className="mt-3 text-muted-on-light text-base leading-relaxed max-w-xl">
+          <p className="mt-3 text-muted-foreground text-base leading-relaxed max-w-xl">
             For over eight years, HouseFada has been setting the standard for premium living services in Nigeria. Here's what sets us apart from the rest.
           </p>
         </motion.div>
@@ -61,11 +61,11 @@ const ValuesSection = () => {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.5, delay: index * 0.1 }}
-              className="bg-surface-light border border-foreground-on-light/8 p-8 md:p-10 rounded-xl group hover:shadow-lg transition-all"
+              className="service-card group"
             >
-              <value.icon className="w-8 h-8 text-accent mb-5" />
-              <h3 className="text-lg font-bold tracking-tight mb-2 text-foreground-on-light">{value.title}</h3>
-              <p className="text-muted-on-light text-sm leading-relaxed">
+              <value.icon className="w-8 h-8 text-accent mb-5 group-hover:text-white transition-colors" />
+              <h3 className="text-lg font-bold tracking-tight mb-2 text-white group-hover:text-accent transition-colors">{value.title}</h3>
+              <p className="text-muted-foreground text-sm leading-relaxed">
                 {value.description}
               </p>
             </motion.div>

@@ -61,7 +61,7 @@ const services = [
 
 const ServicesSection = () => {
   return (
-    <section id="services" className="py-20 md:py-32 section-grey">
+    <section id="services" className="py-20 md:py-32 bg-surface/10 relative border-t border-white/5">
       <div className="max-w-7xl mx-auto px-6 lg:px-10">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
@@ -80,8 +80,8 @@ const ServicesSection = () => {
           transition={{ duration: 0.8, delay: 0.1 }}
           className="mb-12 md:mb-16 max-w-2xl"
         >
-          <h2 className="text-2xl md:text-3xl font-bold tracking-tight leading-tight font-display">
-            One Brand. Every <span className="text-accent">Solution.</span>
+          <h2 className="text-3xl md:text-5xl font-extrabold tracking-tight leading-tight text-white">
+            One Brand. Every <span className="text-accent text-glow">Solution.</span>
           </h2>
           <p className="mt-3 text-muted-foreground text-base leading-relaxed">
             Since 2017, HouseFada has empowered modern living by delivering premium services across nine verticals. We handle the complexities of everyday life so you can focus on what truly matters — your family, your career, and your ambitions.
@@ -100,18 +100,18 @@ const ServicesSection = () => {
               <Link
                 to={service.href}
                 onClick={() => window.scrollTo(0, 0)}
-                className="block bg-background border border-border p-7 md:p-8 rounded-xl group hover:bg-surface hover:border-accent/30 hover:scale-[1.02] transition-all duration-200 h-full"
+                className="service-card block h-full group"
               >
-                <service.icon className="w-8 h-8 text-accent mb-5" />
-                <h3 className="text-lg font-bold tracking-tight mb-2 group-hover:text-accent transition-colors">
+                <service.icon className="w-8 h-8 text-accent mb-5 group-hover:text-white transition-colors" />
+                <h3 className="text-lg font-bold tracking-tight mb-2 text-white group-hover:text-accent transition-colors">
                   {service.name}
                 </h3>
                 <p className="text-muted-foreground text-sm leading-relaxed mb-5">
                   {service.description}
                 </p>
-                <span className="inline-flex items-center gap-2 text-xs font-semibold uppercase tracking-wider text-accent group-hover:gap-3 transition-all">
-                  Read more <ArrowRight className="w-3.5 h-3.5" />
-                </span>
+                <div className="mt-auto pt-4 border-t border-white/5 inline-flex items-center gap-2 text-sm font-medium text-accent group-hover:gap-3 transition-all">
+                  Read more <ArrowRight className="w-4 h-4" />
+                </div>
               </Link>
             </motion.div>
           ))}

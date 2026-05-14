@@ -24,22 +24,22 @@ const HeroSection = () => {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8 }}
           >
-            <h1 className="text-3xl md:text-4xl lg:text-5xl font-bold tracking-tight leading-[1.1] font-display">
+            <h1 className="text-5xl md:text-6xl lg:text-7xl font-extrabold tracking-tighter leading-[1.05]">
               Premium living
               <br />
               solutions built for
               <br />
-              <span className="text-accent">modern Nigeria</span>
+              <span className="text-accent text-glow">modern Nigeria</span>
             </h1>
 
             <p className="mt-5 text-muted-foreground text-base max-w-md leading-relaxed">
               Since 2017, HouseFada has delivered top-tier services across cleaning, culinary, mobility, agriculture, automotive, technology, real estate, publishing, and travel — empowering thousands of Nigerians to live smarter, better, and more conveniently every day.
             </p>
 
-            <div className="mt-8 flex flex-wrap gap-3">
+            <div className="mt-10 flex flex-wrap gap-4">
               <a
                 href="#services"
-                className="inline-flex items-center gap-2.5 bg-accent text-accent-foreground text-sm font-semibold uppercase tracking-wider px-6 py-3 rounded-xl hover:bg-accent/90 transition-all group"
+                className="inline-flex items-center gap-2 bg-accent text-accent-foreground text-sm font-semibold px-6 py-3.5 rounded-lg hover:bg-accent/90 transition-all shadow-[0_0_20px_rgba(255,40,80,0.4)] hover:shadow-[0_0_30px_rgba(255,40,80,0.6)] group"
               >
                 Explore Services
                 <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
@@ -48,7 +48,7 @@ const HeroSection = () => {
                 href="https://wa.me/2348160169189?text=Hello%20HouseFada%2C%20I%27d%20like%20to%20learn%20more%20about%20your%20services!"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="inline-flex items-center gap-2.5 border border-border text-foreground text-sm font-semibold uppercase tracking-wider px-6 py-3 rounded-xl hover:bg-surface-hover transition-all group"
+                className="inline-flex items-center gap-2 border border-white/10 text-white text-sm font-semibold px-6 py-3.5 rounded-lg hover:bg-white/5 transition-all group"
               >
                 Talk to Our Team
                 <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
@@ -73,10 +73,10 @@ const HeroSection = () => {
                   <Link
                     to={item.href}
                     onClick={() => window.scrollTo(0, 0)}
-                    className="bg-card border border-border p-5 rounded-xl flex flex-col items-center justify-center gap-2.5 hover:border-accent/40 hover:scale-105 transition-all duration-200 cursor-pointer block"
+                    className="service-card flex flex-col items-center justify-center gap-3 hover:scale-[1.02] cursor-pointer block group"
                   >
-                    <item.icon className="w-6 h-6 text-accent" />
-                    <span className="text-[11px] font-semibold uppercase tracking-widest text-muted-foreground text-center">
+                    <item.icon className="w-6 h-6 text-accent group-hover:text-white transition-colors" />
+                    <span className="text-[12px] font-medium text-muted-foreground text-center group-hover:text-white transition-colors">
                       {item.label}
                     </span>
                   </Link>
@@ -88,10 +88,10 @@ const HeroSection = () => {
               initial={{ opacity: 0, x: 20 }}
               animate={{ opacity: 1, x: 0 }}
               transition={{ duration: 0.6, delay: 1.2 }}
-              className="absolute -top-5 -right-5 bg-accent text-accent-foreground px-4 py-2.5 rounded-xl shadow-lg z-10"
+              className="absolute -top-6 -right-6 bg-surface border border-white/10 px-5 py-3 rounded-lg shadow-2xl backdrop-blur-md z-10"
             >
-              <div className="text-xs font-bold uppercase tracking-widest">Since 2017</div>
-              <div className="text-[11px] text-accent-foreground/70 mt-0.5">9 Services</div>
+              <div className="text-xs font-bold text-white">Since 2017</div>
+              <div className="text-[12px] text-muted-foreground mt-0.5">9 Services</div>
             </motion.div>
           </motion.div>
         </div>
